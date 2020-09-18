@@ -7,21 +7,22 @@ namespace BallLabirynthOOP
     public sealed class BonusCubeInitializator
     {
         public BonusCubeInitializator(MainController mainController, BonusCubeData bonusData)
-        {
-            List<BonusCubeModel> bonusModels = new List<BonusCubeModel>();
+        {            
             GameObject bonusCubeTemp = null;
+            BonusCubeController bonusCubeController = null;
 
             for (int i = 0; i < Constants.BonusPositions.Count; i++)
             {
                 
                 bonusCubeTemp = Object.Instantiate(bonusData.BonusCube.BonusCubeObject, Constants.BonusPositions[i], Quaternion.identity);
-                var bonusCube = new BonusCube(bonusCubeTemp);
-                var bonusCubeModel = new BonusCubeModel(bonusCube);
-                bonusModels.Add(bonusCubeModel);
-            }
+                BonusCube bonusCube = new BonusCube(bonusCubeTemp);
 
-            mainController.AddUpdatable(new BonusCubeController(bonusModels));
-            mainController.AddFixedUpdatable(new BonusCubeController(bonusModels));
+                var bonusCubeModel = new BonusCubeModel(bonusCube);
+                bonusCubeController = new BonusCubeController(mainController, bonusCubeModel);
+                mainController.AddUpdatable(bonusCubeController);
+                mainController.AddFixedUpdatable(bonusCubeController);
+                mainController.AddDrawUpdatable(bonusCubeController);
+            }                
         }
     }
 }

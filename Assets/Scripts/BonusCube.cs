@@ -8,19 +8,22 @@ using System.Linq;
 namespace BallLabirynthOOP
 {
     [Serializable]
-    public sealed class BonusCube : InteractiveObject, IFly, IFlicker, IRotation, IEquatable<BonusCube>
+    public sealed class BonusCube : InteractiveObject, IEquatable<BonusCube>
     {
         public GameObject BonusCubeObject;
-
         private BonusType _bonusType;
         private BoxCollider _bonusCubeCollider;
+        private Renderer _renderer;
         private Material _material;
+        private Type _behaviourType;
+
+        private RaycastHit _hit;
         private int _points;
         private float _lengthFlay;
         private float _speedRotation;
         private bool _isTriggered;
 
-        private List<Type> behaviourTypes = new List<Type>() {typeof(IFly), typeof(IFlicker), typeof(IRotation) };
+        private List<Type> behaviourTypes = new List<Type>() { typeof(IFly), typeof(IFlicker), typeof(IRotation) };
 
         public bool Trigger
         {
@@ -32,14 +35,16 @@ namespace BallLabirynthOOP
 
         public BonusCube(GameObject cube)
         {
+            BonusCubeObject = cube;
             var bonusTypeList = Enum.GetValues(typeof(BonusType)).Cast<BonusType>().ToList();
             var randBonusType = Random.Range(0, bonusTypeList.Count);
             _bonusType = bonusTypeList[randBonusType];
             _material = cube.GetComponent<Renderer>().material;
+            _renderer = cube.GetComponent<Renderer>();
             _lengthFlay = Random.Range(1.0f, 5.0f);
-            _speedRotation = Random.Range(10.0f, 50.0f);
+            _speedRotation = Random.Range(20.0f, 40.0f);
+            _behaviourType = ChooseRandDefaultBehaviour();
 
-            Gizmos.color = Color.green;
             Action();
         }
 
@@ -52,8 +57,23 @@ namespace BallLabirynthOOP
 
         public void OnTrigger()
         {
-            _isTriggered = Physics.CheckBox(BonusCubeObject.GetComponent<Renderer>().bounds.center, BonusCubeObject.GetComponent<Renderer>().bounds.extents);
-            Gizmos.DrawCube(BonusCubeObject.GetComponent<Renderer>().bounds.center, BonusCubeObject.GetComponent<Renderer>().bounds.size);        
+            _isTriggered = Physics.BoxCast(_renderer.bounds.center, _renderer.bounds.extents,
+                 Vector3.one, out _hit, BonusCubeObject.transform.rotation, 0.5f, 1 << 8);
+
+            if (_isTriggered && _hit.collider.CompareTag("Player"))
+            {
+                Debug.Log("Im TRIGGERED");
+                this.OnTriggerEnter();
+                GameObject.Destroy(BonusCubeObject);
+            }
+        }
+
+        public void DrawGizmo()
+        {
+            Gizmos.color = Color.green;
+            //Gizmos.DrawCube(BonusCubeObject.GetComponent<Renderer>().bounds.center, BonusCubeObject.GetComponent<Renderer>().bounds.size);
+
+            //Gizmos.DrawCube(_renderer.bounds.center, _renderer.bounds.size);
         }
 
         public override void Initialize(IView view)
@@ -71,37 +91,35 @@ namespace BallLabirynthOOP
 
         public override void Interaction()
         {
-            var behaviour = ChooseRandDefaultBehaviour();
-
-            if (behaviour is IFly fly)
+            if (typeof(IFly).Name.Equals(_behaviourType.Name))
             {
-                fly.Fly();
+                Fly();
             }
 
-            if (behaviour is IFlicker flicker)
+            if (typeof(IFlicker).Name.Equals(_behaviourType.Name))
             {
-                flicker.Flicker();
+                Flicker();
             }
 
-            if (behaviour is IRotation rotation)
+            if (typeof(IRotation).Name.Equals(_behaviourType.Name))
             {
-                rotation.Rotation();
+                Rotation();
             }
         }
 
-        public void Fly()
+        public override void Fly()
         {
             BonusCubeObject.transform.localPosition = new Vector3(BonusCubeObject.transform.localPosition.x,
             Mathf.PingPong(Time.time, _lengthFlay),
             BonusCubeObject.transform.localPosition.z);
         }
 
-        public void Flicker()
+        public override void Flicker()
         {
             _material.color = new Color(_material.color.r, _material.color.g, _material.color.b, Mathf.PingPong(Time.time, 1.0f));
         }
 
-        public void Rotation()
+        public override void Rotation()
         {
             BonusCubeObject.transform.Rotate(Vector3.up * (Time.deltaTime * _speedRotation), Space.World);
         }

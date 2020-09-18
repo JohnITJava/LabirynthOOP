@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52b5a714d0b85b4c842533a6de7c7e7, type: 3}
   m_Name: PlayerBallData
   m_EditorClassIdentifier: 
-  playerBall:
-    MainCamera: {fileID: 0}
-    Rigidbody: {fileID: 8701061261033089860, guid: fc7a3ff7efc82474f9ac527f26a3c345,
+  PlayerBall:
+    MainCamera: {fileID: 2194099477473731401, guid: 5358525edf999da40a31f62b1933764b,
       type: 3}
     Speed: 3
-    StartPosition: {x: -1.1, y: 0.7, z: 14}
-    Ball: {fileID: 0}
+    StartPosition: {x: -1, y: 0.7, z: 14}
+    Ball: {fileID: 1823417170369058712, guid: fc7a3ff7efc82474f9ac527f26a3c345, type: 3}

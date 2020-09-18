@@ -1,31 +1,37 @@
-﻿using System.Collections.Generic;
-
-
-namespace BallLabirynthOOP
+﻿namespace BallLabirynthOOP
 {
-    public sealed class BonusCubeController : IUpdateble, FixedUpdateble
+    public sealed class BonusCubeController : IUpdateble, FixedUpdateble, IDrawUpdateble
     {
-        private List<BonusCubeModel> _bonusModels;
+        private BonusCubeModel _bonusModel;
+        private MainController _mainController;
 
-        public BonusCubeController(List<BonusCubeModel> bonusModels)
+        public BonusCubeModel BonusCubeModel => _bonusModel;
+
+        public BonusCubeController(MainController mainController, BonusCubeModel bonusModel)
         {
-            _bonusModels = bonusModels;
+            _bonusModel = bonusModel;
+            _bonusModel.BonusCube.OnDestroyChange += InteractiveObjectOnDestroyChange;
         }
 
         void IUpdateble.UpdateTick()
         {
-            foreach (var model in _bonusModels)
-            {
-                model.BonusCube.Interaction();
-            }
+            _bonusModel.BonusCube.Interaction();
         }
 
         void FixedUpdateble.UpdateTick()
         {
-            foreach (var model in _bonusModels)
-            {
-                model.BonusCube.OnTrigger();
-            }
+            _bonusModel.BonusCube.OnTrigger();
+        }
+
+        void IDrawUpdateble.UpdateTick()
+        {
+            _bonusModel.BonusCube.DrawGizmo();
+        }
+
+        private void InteractiveObjectOnDestroyChange(InteractiveObject value)
+        {
+            value.OnDestroyChange -= InteractiveObjectOnDestroyChange;
+            _mainController.DeleteDestroyed(this);
         }
     }
 }

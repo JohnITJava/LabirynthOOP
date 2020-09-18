@@ -7,13 +7,16 @@ namespace BallLabirynthOOP
     [Serializable]
     public class Player
     {
-
-        public Camera MainCamera;
-        public Rigidbody Rigidbody;
+        protected Rigidbody _rigidbody;
 
         public float Speed;
         public Vector3 StartPosition;
 
+        public Rigidbody Rigidbody
+        {
+            get => _rigidbody;
+            set => _rigidbody = value;
+        }
 
         public Player()
         {
