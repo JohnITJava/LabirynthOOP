@@ -2,6 +2,6 @@
 {
     public interface IInizialization
     {
-        void Initialize(IView view);
+        void Initialization(IView view);
     }
 }

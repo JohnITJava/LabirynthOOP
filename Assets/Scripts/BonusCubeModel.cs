@@ -9,7 +9,6 @@
         public BonusCubeModel(BonusCube bonusCube)
         {
             _bonusCube = bonusCube;
-            _bonusCube.ChooseRandDefaultBehaviour();
         }
 
     }

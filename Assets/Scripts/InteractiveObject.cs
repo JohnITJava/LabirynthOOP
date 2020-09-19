@@ -16,8 +16,8 @@ namespace BallLabirynthOOP
 
         public void OnTriggerEnter()
         {
-            Interaction();
             OnDestroyChange?.Invoke(this);
+            Action();
         }
 
         public abstract void Interaction();
@@ -26,7 +26,10 @@ namespace BallLabirynthOOP
 
         public abstract int CompareTo(InteractiveObject other);
 
-        public abstract void Initialize(IView view);
+        public virtual void Initialization(IView view)
+        {
+            _view = view;
+        }
 
         public abstract void Fly();
 

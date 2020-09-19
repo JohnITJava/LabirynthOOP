@@ -45,7 +45,7 @@ namespace BallLabirynthOOP
             _speedRotation = Random.Range(20.0f, 40.0f);
             _behaviourType = ChooseRandDefaultBehaviour();
 
-            Action();
+            _points = Random.Range(0, 99);
         }
 
         public Type ChooseRandDefaultBehaviour()
@@ -63,8 +63,7 @@ namespace BallLabirynthOOP
             if (_isTriggered && _hit.collider.CompareTag("Player"))
             {
                 Debug.Log("Im TRIGGERED");
-                this.OnTriggerEnter();
-                GameObject.Destroy(BonusCubeObject);
+                this.OnTriggerEnter();            
             }
         }
 
@@ -76,17 +75,19 @@ namespace BallLabirynthOOP
             //Gizmos.DrawCube(_renderer.bounds.center, _renderer.bounds.size);
         }
 
-        public override void Initialize(IView view)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void Action()
         {
-            if (BonusCubeObject.TryGetComponent(out Renderer renderer))
+            if (_bonusType.Equals(BonusType.BadBonus))
             {
-                renderer.material.color = Random.ColorHSV();
+                _view.Display(-_points);
             }
+
+            if (_bonusType.Equals(BonusType.GoodBonus))
+            {
+                _view.Display(_points);
+            }
+
+            GameObject.Destroy(BonusCubeObject);
         }
 
         public override void Interaction()
@@ -116,6 +117,11 @@ namespace BallLabirynthOOP
 
         public override void Flicker()
         {
+            if (BonusCubeObject.TryGetComponent(out Renderer renderer))
+            {
+                renderer.material.color = Random.ColorHSV();
+            }
+
             _material.color = new Color(_material.color.r, _material.color.g, _material.color.b, Mathf.PingPong(Time.time, 1.0f));
         }
 
@@ -131,7 +137,18 @@ namespace BallLabirynthOOP
 
         public bool Equals(BonusCube other)
         {
-            throw new NotImplementedException();
+            bool flag = false;
+
+            if (other == null)
+            {
+                flag = false;
+            }
+            if (other.BonusCubeObject.transform.position == this.BonusCubeObject.transform.position)
+            {
+                flag = true;
+            }
+
+            return flag;
         }
     }
 }

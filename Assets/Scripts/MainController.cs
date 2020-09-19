@@ -16,15 +16,9 @@ namespace BallLabirynthOOP
         private List<IUpdateble> _lateUpdatables = new List<IUpdateble>();
         private List<FixedUpdateble> _fixedUpdatables = new List<FixedUpdateble>();
         private List<IDrawUpdateble> _drawUpdatebles = new List<IDrawUpdateble>();
-
-        private List<InteractiveObject> _interactiveObjects = new List<InteractiveObject>();
+        private List<IGuiUpdateble> _iGuiUpdatebles = new List<IGuiUpdateble>();
 
         public CameraData CameraData => _cameraData;
-        public List<InteractiveObject> InteractiveObjects
-        {
-            get => _interactiveObjects;
-            set => _interactiveObjects = value;
-        }
 
         private void Start()
         {
@@ -63,6 +57,14 @@ namespace BallLabirynthOOP
             }
         }
 
+        private void OnGUI()
+        {
+            for (int i = 0; i < _iGuiUpdatebles.Count; i++)
+            {
+                _iGuiUpdatebles[i].UpdateTick();
+            }
+        }
+
         public void AddUpdatable(IUpdateble updateble)
         {
             _iUpdatables.Add(updateble);
@@ -83,12 +85,9 @@ namespace BallLabirynthOOP
             _drawUpdatebles.Add(updateble);
         }
 
-        public void DeleteDestroyed(BonusCubeController cubeController)
+        public void AddGuiUpdatable(IGuiUpdateble updateble)
         {
-            _iUpdatables.Remove(cubeController);
-            _drawUpdatebles.Remove(cubeController);
-            _fixedUpdatables.Remove(cubeController);
-            _lateUpdatables.Remove(cubeController);
+            _iGuiUpdatebles.Add(updateble);
         }
     }
 }

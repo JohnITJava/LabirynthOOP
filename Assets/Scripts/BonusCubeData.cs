@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 
 namespace BallLabirynthOOP
@@ -7,5 +8,6 @@ namespace BallLabirynthOOP
     public sealed class BonusCubeData : ScriptableObject
     {
         public BonusCube BonusCube;
+        public TextMeshProUGUI tmpro;
     }
 }
