@@ -12,10 +12,10 @@ namespace BallLabirynthOOP
         private Vector3 _offset;
 
 
-        public CameraModel(CameraData cameraData)
+        public CameraModel(Camera camera, PlayerBall playerBall)
         {
-            _camera = cameraData.GetBallData.playerBall.MainCamera;
-            _player = cameraData.GetBallData.playerBall;
+            _camera = camera;
+            _player = playerBall;
         }
 
         public void PreIniting()

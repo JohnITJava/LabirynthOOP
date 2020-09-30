@@ -6,7 +6,7 @@
         {
             new PlayerBallInitializator(mainController, playerBallData);
 
-            new CameraInitializator(mainController, new CameraData(playerBallData));
+            new CameraInitializator(mainController, playerBallData);
 
             new BonusCubeInitializator(mainController, bonusCubeData);
         }

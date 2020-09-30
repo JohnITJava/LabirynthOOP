@@ -5,12 +5,20 @@ using Random = UnityEngine.Random;
 
 namespace BallLabirynthOOP
 {
-    public abstract class InteractiveObject : IInteractable, IComparable<InteractiveObject>
+    public abstract class InteractiveObject : IInteractable, IFly, IFlicker, IRotation, IComparable<InteractiveObject>
     {
 
         protected IView _view;
 
-        bool IInteractable.IsInteractable { get; } = true;
+        public event Action<InteractiveObject> OnDestroyChange;
+
+        public bool IsInteractable { get; } = true;
+
+        public void OnTriggerEnter()
+        {
+            OnDestroyChange?.Invoke(this);
+            Action();
+        }
 
         public abstract void Interaction();
 
@@ -18,6 +26,15 @@ namespace BallLabirynthOOP
 
         public abstract int CompareTo(InteractiveObject other);
 
-        public abstract void Initialize(IView view);
+        public virtual void Initialization(IView view)
+        {
+            _view = view;
+        }
+
+        public abstract void Fly();
+
+        public abstract void Flicker();
+
+        public abstract void Rotation();
     }
 }

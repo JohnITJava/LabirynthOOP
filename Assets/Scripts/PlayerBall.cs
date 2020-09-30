@@ -8,17 +8,15 @@ namespace BallLabirynthOOP
     [Serializable]
     public sealed class PlayerBall : Player
     {
-
         public GameObject Ball;
-
-
-        public PlayerBall() { }
+        public Camera MainCamera;
 
         public PlayerBall(GameObject ball, float speed, Vector3 startPosition)
         {
             Ball = ball;
             Speed = speed;
             StartPosition = startPosition;
+            Rigidbody = ball.GetComponent<Rigidbody>();
         }
 
 

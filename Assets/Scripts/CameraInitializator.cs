@@ -5,19 +5,19 @@ namespace BallLabirynthOOP
 {
     public sealed class CameraInitializator
     {
-        public CameraInitializator(MainController mainController, CameraData cameraData)
+        public CameraInitializator(MainController mainController, PlayerBallData playerBallData)
         {
+            var cameraData = mainController.CameraData;
 
-            var createdCamera = Object.Instantiate(cameraData.GetBallData.playerBall.MainCamera,
-                new Vector3(cameraData.GetBallData.playerBall.StartPosition.x, cameraData.StartedOffset.y, cameraData.StartedOffset.z),
+            var createdCamera = Object.Instantiate(playerBallData.PlayerBall.MainCamera,
+                new Vector3(cameraData.StartedOffset.x, cameraData.StartedOffset.y, cameraData.StartedOffset.z),
                 Quaternion.identity);
 
             createdCamera.transform.rotation = Quaternion.Euler(new Vector3(75.0f, 180.0f, 0.0f));
-            cameraData.GetBallData.playerBall.MainCamera = createdCamera;
+            //cameraData.GetBallData.PlayerBall.MainCamera = createdCamera;
+            var cameraModel = new CameraModel(createdCamera, cameraData.PlayerBallReference);
 
-            var cameraModel = new CameraModel(cameraData);
             cameraModel.PreIniting();
-
             mainController.AddLateUpdatable(new CameraController(cameraModel));
 
         }

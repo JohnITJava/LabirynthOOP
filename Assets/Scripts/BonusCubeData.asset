@@ -15,3 +15,4 @@ MonoBehaviour:
   BonusCube:
     BonusCubeObject: {fileID: 935916651465004120, guid: 71b6a679fd0a2be4da78e8e6446521cc,
       type: 3}
+  tmpro: {fileID: 3206555869099675954, guid: 97dcb4d49e77aa140b242787d7f9c880, type: 3}
