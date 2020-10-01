@@ -19544,6 +19544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 916293705}
   - component: {fileID: 916293706}
+  - component: {fileID: 916293707}
   m_Layer: 0
   m_Name: MainInizializator
   m_TagString: Untagged
@@ -19579,6 +19580,99 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerBallData: {fileID: 11400000, guid: f11c624f92439664abe41a1437949f20, type: 2}
   _bonusCubeData: {fileID: 11400000, guid: 963ea6939b858a84cbbfacb133749a39, type: 2}
+  _cameraData: {fileID: 11400000, guid: 80cdb58a9adb8194daf8ca5883156099, type: 2}
+--- !u!114 &916293707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916293704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6051e0091ccd6d439009f3e601cf068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guiStyle:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 0
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
+  _guiSkin: {fileID: 0}
+  _guiContent:
+    m_Text: 
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  _guiSettings:
+    m_DoubleClickSelectsWord: 1
+    m_TripleClickSelectsLine: 1
+    m_CursorColor: {r: 1, g: 1, b: 1, a: 1}
+    m_CursorFlashSpeed: -1
+    m_SelectionColor: {r: 0.5, g: 0.5, b: 1, a: 1}
+  _textMesh: {fileID: 3206555869099675954, guid: 97dcb4d49e77aa140b242787d7f9c880,
+    type: 3}
 --- !u!1 &919772832
 GameObject:
   m_ObjectHideFlags: 0

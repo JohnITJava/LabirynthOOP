@@ -5,16 +5,19 @@ using System.Linq;
 
 namespace BallLabirynthOOP
 {
-    public sealed class BonusCubeController : IUpdateble, FixedUpdateble, IDrawUpdateble, IGuiUpdateble
+    public sealed class BonusCubeController : IUpdateble, FixedUpdateble, IDrawUpdateble
     {
         private List<BonusCubeModel> _bonusModels = new List<BonusCubeModel>();
         private DisplayBonuses _displayBonuses;
+        private CameraData _cameraData;
+
 
         public List<BonusCubeModel> BonusCubeModels => _bonusModels;
 
-        public BonusCubeController(BonusCubeData cubeData, DisplayBonuses displayBonuses)
+
+        public BonusCubeController(BonusCubeData cubeData, CameraData cameraData)
         {
-            _displayBonuses = displayBonuses;
+            _cameraData = cameraData;
 
             GameObject bonusCubeObj = null;
             for (int i = 0; i < Constants.BonusPositions.Count; i++)
@@ -22,7 +25,6 @@ namespace BallLabirynthOOP
                 bonusCubeObj = Object.Instantiate(cubeData.BonusCube.BonusCubeObject, Constants.BonusPositions[i], Quaternion.identity);
                 BonusCube bonusCube = new BonusCube(bonusCubeObj);
 
-                bonusCube.Initialization(displayBonuses);
                 var bonusCubeModel = new BonusCubeModel(bonusCube);
 
                 bonusCube.OnDestroyChange += InteractiveObjectOnDestroyChange;
@@ -56,15 +58,12 @@ namespace BallLabirynthOOP
             }
         }
 
-        void IGuiUpdateble.UpdateTick()
+        private void InteractiveObjectOnDestroyChange(InteractiveObject obj)
         {
-            _displayBonuses.RenderBonusPanel();
-        }
-
-        private void InteractiveObjectOnDestroyChange(InteractiveObject value)
-        {
-            value.OnDestroyChange -= InteractiveObjectOnDestroyChange;
-            var relativeModel = _bonusModels.First(e => e.BonusCube.Equals((BonusCube)value));
+            var cube = (BonusCube)obj;
+            _cameraData.CameraView.PlayerBall.EventSignersInvoke(cube);
+            obj.OnDestroyChange -= InteractiveObjectOnDestroyChange;
+            var relativeModel = _bonusModels.First(e => e.BonusCube.Equals(cube));
             if (relativeModel != null)
             {
                 _bonusModels.Remove(relativeModel);

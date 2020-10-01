@@ -2,6 +2,6 @@
 {
     public interface IRotation
     {
-        void Rotation();
+        void Rotate();
     }
 }

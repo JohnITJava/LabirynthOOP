@@ -1,59 +1,100 @@
 ﻿using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
-using System.Collections.Generic;
 using System.Linq;
+using Random = UnityEngine.Random;
+using static BallLabirynthOOP.CubeTypeBehaviourWrapper;
 
 
 namespace BallLabirynthOOP
 {
+
     [Serializable]
     public sealed class BonusCube : InteractiveObject, IEquatable<BonusCube>
     {
         public GameObject BonusCubeObject;
+
+        public float FlyMin = 1.0f;
+        public float FlyMax = 5.0f;
+        public float SpeedRotationMin = 20.0f;
+        public float SpeedRotationMax = 40.0f;
+        public float PointsMin = 0.0f;
+        public float PointsMax = 99.0f;
+
+
         private BonusType _bonusType;
-        private BoxCollider _bonusCubeCollider;
         private Renderer _renderer;
         private Material _material;
-        private Type _behaviourType;
-
+        private CubeTypeBehaviour _behaviourType;
+        private CubeTypeBehaviourDelegate _cubeTypeBehaviourDelegate;
         private RaycastHit _hit;
+
         private int _points;
         private float _lengthFlay;
         private float _speedRotation;
         private bool _isTriggered;
 
-        private List<Type> behaviourTypes = new List<Type>() { typeof(IFly), typeof(IFlicker), typeof(IRotation) };
-
-        public bool Trigger
-        {
-            get => _isTriggered;
-            set => _isTriggered = value;
-        }
 
         public BonusCube() { }
 
         public BonusCube(GameObject cube)
         {
             BonusCubeObject = cube;
+            Initialization(cube);
+            _cubeTypeBehaviourDelegate = new CubeTypeBehaviourDelegate(this);
+        }
+
+        public BonusType BonusType => _bonusType;
+
+        public int Points => _points;
+
+        private void Initialization(GameObject cube)
+        {
+            DefineCubeBehaviorType();
+            DefineAppearance(cube);
+            MovementRangeCalculate();
+            DefinePointsAndPolarity();
+        }
+
+        private void DefineCubeBehaviorType()
+        {
             var bonusTypeList = Enum.GetValues(typeof(BonusType)).Cast<BonusType>().ToList();
             var randBonusType = Random.Range(0, bonusTypeList.Count);
             _bonusType = bonusTypeList[randBonusType];
+            _behaviourType = ChooseRandDefaultBehaviour();
+        }
+
+        private void DefineAppearance(GameObject cube)
+        {
             _material = cube.GetComponent<Renderer>().material;
             _renderer = cube.GetComponent<Renderer>();
-            _lengthFlay = Random.Range(1.0f, 5.0f);
-            _speedRotation = Random.Range(20.0f, 40.0f);
-            _behaviourType = ChooseRandDefaultBehaviour();
-
-            _points = Random.Range(0, 99);
         }
 
-        public Type ChooseRandDefaultBehaviour()
+        private void MovementRangeCalculate()
         {
-            var randBehaviourChoice = Random.Range(0, behaviourTypes.Count);
-            var behavior = behaviourTypes[randBehaviourChoice];
+            _lengthFlay = Random.Range(FlyMin, FlyMax);
+            _speedRotation = Random.Range(SpeedRotationMin, SpeedRotationMax);
+        }
+
+        private void DefinePointsAndPolarity()
+        {
+            var points = (int)Random.Range(PointsMin, PointsMax);
+            if (BonusType.Equals(BonusType.BadBonus))
+            {
+                _points = -points;
+            }
+            else
+            {
+                _points = points;
+            }
+        }
+
+
+        private CubeTypeBehaviour ChooseRandDefaultBehaviour()
+        {
+            var behavior = SelectRandCubeBehaviour();
             return behavior;
         }
+
 
         public void OnTrigger()
         {
@@ -63,9 +104,10 @@ namespace BallLabirynthOOP
             if (_isTriggered && _hit.collider.CompareTag("Player"))
             {
                 Debug.Log("Im TRIGGERED");
-                this.OnTriggerEnter();            
+                this.OnTriggerEnter();
             }
         }
+
 
         public void DrawGizmo()
         {
@@ -75,38 +117,18 @@ namespace BallLabirynthOOP
             //Gizmos.DrawCube(_renderer.bounds.center, _renderer.bounds.size);
         }
 
+
         public override void Action()
         {
-            if (_bonusType.Equals(BonusType.BadBonus))
-            {
-                _view.Display(-_points);
-            }
-
-            if (_bonusType.Equals(BonusType.GoodBonus))
-            {
-                _view.Display(_points);
-            }
-
             GameObject.Destroy(BonusCubeObject);
         }
 
+
         public override void Interaction()
         {
-            if (typeof(IFly).Name.Equals(_behaviourType.Name))
-            {
-                Fly();
-            }
-
-            if (typeof(IFlicker).Name.Equals(_behaviourType.Name))
-            {
-                Flicker();
-            }
-
-            if (typeof(IRotation).Name.Equals(_behaviourType.Name))
-            {
-                Rotation();
-            }
+            _cubeTypeBehaviourDelegate[_behaviourType]?.Invoke();
         }
+
 
         public override void Fly()
         {
@@ -115,7 +137,8 @@ namespace BallLabirynthOOP
             BonusCubeObject.transform.localPosition.z);
         }
 
-        public override void Flicker()
+
+        public override void Flick()
         {
             if (BonusCubeObject.TryGetComponent(out Renderer renderer))
             {
@@ -125,15 +148,35 @@ namespace BallLabirynthOOP
             _material.color = new Color(_material.color.r, _material.color.g, _material.color.b, Mathf.PingPong(Time.time, 1.0f));
         }
 
-        public override void Rotation()
+
+        public override void Rotate()
         {
             BonusCubeObject.transform.Rotate(Vector3.up * (Time.deltaTime * _speedRotation), Space.World);
         }
 
-        public override int CompareTo(InteractiveObject other)
+
+        public override int CompareTo(object other)
         {
-            throw new NotImplementedException();
+            int compare = 0;
+
+            BonusCube first = this;
+            BonusCube second = (BonusCube)other;
+
+            if (second == null && first == null || second.Equals(first))
+            {
+                compare = 0;
+            }
+            else if (other == null && this != null || (second.BonusCubeObject.transform.position.magnitude < first.BonusCubeObject.transform.position.magnitude))
+            {
+                compare = 1;
+            }
+            else if ((other != null && this == null) || (second.BonusCubeObject.transform.position.magnitude > first.BonusCubeObject.transform.position.magnitude))
+            {
+                compare = -1;
+            }
+            return compare;
         }
+
 
         public bool Equals(BonusCube other)
         {
@@ -143,7 +186,7 @@ namespace BallLabirynthOOP
             {
                 flag = false;
             }
-            if (other.BonusCubeObject.transform.position == this.BonusCubeObject.transform.position)
+            if (this.BonusCubeObject.transform.position == other.BonusCubeObject.transform.position)
             {
                 flag = true;
             }

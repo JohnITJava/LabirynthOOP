@@ -9,20 +9,19 @@ namespace BallLabirynthOOP
 
         [SerializeField] private PlayerBallData _playerBallData;
         [SerializeField] private BonusCubeData _bonusCubeData;
+        [SerializeField] private CameraData _cameraData;
 
-        private CameraData _cameraData = new CameraData();
 
         private List<IUpdateble> _iUpdatables = new List<IUpdateble>();
-        private List<IUpdateble> _lateUpdatables = new List<IUpdateble>();
+        private List<ILateUpdateble> _lateUpdatables = new List<ILateUpdateble>();
         private List<FixedUpdateble> _fixedUpdatables = new List<FixedUpdateble>();
         private List<IDrawUpdateble> _drawUpdatebles = new List<IDrawUpdateble>();
         private List<IGuiUpdateble> _iGuiUpdatebles = new List<IGuiUpdateble>();
 
-        public CameraData CameraData => _cameraData;
 
         private void Start()
         {
-            new InitializeController(this, _playerBallData, _bonusCubeData);
+            new InitializeController(this, _playerBallData, _bonusCubeData, _cameraData);
         }
 
         private void Update()
@@ -65,12 +64,13 @@ namespace BallLabirynthOOP
             }
         }
 
+
         public void AddUpdatable(IUpdateble updateble)
         {
             _iUpdatables.Add(updateble);
         }
 
-        public void AddLateUpdatable(IUpdateble updateble)
+        public void AddLateUpdatable(ILateUpdateble updateble)
         {
             _lateUpdatables.Add(updateble);
         }

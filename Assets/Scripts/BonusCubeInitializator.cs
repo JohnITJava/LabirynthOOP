@@ -6,15 +6,13 @@ namespace BallLabirynthOOP
 {
     public sealed class BonusCubeInitializator
     {
-        public BonusCubeInitializator(MainController mainController, BonusCubeData bonusData)
+        public BonusCubeInitializator(MainController mainController, BonusCubeData bonusData, CameraData cameraData)
         {
-            DisplayBonuses displayBonuses = new DisplayBonuses(bonusData.tmpro);
-            BonusCubeController bonusCubeController = new BonusCubeController(bonusData, displayBonuses);
+            BonusCubeController bonusCubeController = new BonusCubeController(bonusData, cameraData);
            
             mainController.AddUpdatable(bonusCubeController);
             mainController.AddFixedUpdatable(bonusCubeController);
             mainController.AddDrawUpdatable(bonusCubeController);
-            mainController.AddGuiUpdatable(bonusCubeController);
         }
 
     }

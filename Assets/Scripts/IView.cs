@@ -2,6 +2,6 @@
 {
     public interface IView
     {
-        void Display(int value);
+        void Display(string message);
     }
 }

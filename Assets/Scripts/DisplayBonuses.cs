@@ -1,25 +1,38 @@
-﻿using UnityEngine;
-using TMPro;
-
+﻿using TMPro;
+using UnityEngine;
 
 namespace BallLabirynthOOP
 {
-    public sealed class DisplayBonuses : IView
-    {
-        private TextMeshProUGUI _textMesh;
-        private int _point;
 
-        public DisplayBonuses(TextMeshProUGUI textMesh)
+    public sealed class DisplayBonuses
+    {
+        private string _text;
+        private static int _points;
+        private DisplayDelegate _displayDelegate;
+
+        private GUIDisplay _guiDisplay;
+
+        public DisplayBonuses()
         {
-            _textMesh = textMesh;
+            _guiDisplay = GameObject.FindObjectOfType<GUIDisplay>();
         }
 
-        public void RenderBonusPanel() => GUI.Box(new Rect(0, 0, 200, 50), new GUIContent(_textMesh.text));
-
-        public void Display(int value)
+        public void Display()
         {
-            _point += value;
-            _textMesh.text = $"You get points: current {_point}";
+            _guiDisplay.Display(_text);
+        }
+
+        public void PrepareInfoMessage(int value)
+        {
+            _points += value;
+            if (value > 0)
+            {
+                _text = $"You get {value} points: current {_points}";
+            }
+            else if (value < 0)
+            {
+                _text = $"You loose {value} points: current {_points}";
+            }
         }
     }
 }

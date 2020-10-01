@@ -6,26 +6,14 @@ namespace BallLabirynthOOP
     public sealed class CameraModel
     {
 
-        private Camera _camera;
-        private PlayerBall _player;
+        private CameraView _cameraView;
 
-        private Vector3 _offset;
-
-
-        public CameraModel(Camera camera, PlayerBall playerBall)
+        public CameraModel(CameraView cameraView)
         {
-            _camera = camera;
-            _player = playerBall;
+            _cameraView = cameraView;
         }
 
-        public void PreIniting()
-        {
-            _offset = _camera.transform.position - _player.Ball.transform.position;
-        }
+        public CameraView CameraView => _cameraView;
 
-        public void LateMove()
-        {
-            _camera.transform.position = _player.Ball.transform.position + _offset;
-        }
     }
 }

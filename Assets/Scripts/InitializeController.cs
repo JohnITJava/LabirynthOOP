@@ -2,13 +2,15 @@
 {
     public sealed class InitializeController
     {
-        public InitializeController(MainController mainController, PlayerBallData playerBallData, BonusCubeData bonusCubeData)
+        public InitializeController(MainController mainController, PlayerBallData playerBallData, BonusCubeData bonusCubeData, CameraData cameraData)
         {
-            new PlayerBallInitializator(mainController, playerBallData);
+            new PlayerBallInitializator(mainController, playerBallData, cameraData);
 
-            new CameraInitializator(mainController, playerBallData);
+            new CameraInitializator(mainController, cameraData);
 
-            new BonusCubeInitializator(mainController, bonusCubeData);
+            new BonusCubeInitializator(mainController, bonusCubeData, cameraData);
+
+            new GUIInizializator(mainController);
         }
     }
 }

@@ -1,23 +1,47 @@
-﻿using UnityEngine;
-
-
-namespace BallLabirynthOOP
+﻿namespace BallLabirynthOOP
 {
-    public sealed class CameraController : IUpdateble
+    public sealed class CameraController : IUpdateble, ILateUpdateble
     {
 
+        private const float START_ELAPSE = 0.0f;
+
         private CameraModel _cameraModel;
+        private CameraData _cameraData;
 
 
         public CameraController(CameraModel cameraModel)
         {
             _cameraModel = cameraModel;
+            SignToBonusChangeEvent();
         }
 
 
-        public void UpdateTick()
+        private void SignToBonusChangeEvent()
         {
-            _cameraModel.LateMove();
+            _cameraModel.CameraView.PlayerBall.OnBonusPointsChange += OnBonusChangeReaction;
+        }
+
+
+        public void OnBonusChangeReaction(object obj, BonusChangeEventArgs args)
+        {
+            if (((BonusCube)args.InteractiveObj).BonusType.Equals(BonusType.BadBonus))
+            {
+                _cameraModel.CameraView.ShakeTrigger(true);
+            }         
+        }
+
+
+        void IUpdateble.UpdateTick()
+        {
+            if (_cameraModel.CameraView.IsShakeTriggered)
+            {
+                _cameraModel.CameraView.Shake();
+            }
+        }
+
+        void ILateUpdateble.UpdateTick()
+        {
+            _cameraModel.CameraView.LateMove();
         }
     }
 }
