@@ -8,7 +8,7 @@ namespace BallLabirynthOOP
     public sealed class BonusCubeController : IUpdateble, IFixedUpdateble, IDrawUpdateble
     {
         private List<BonusCubeModel> _bonusModels = new List<BonusCubeModel>();
-        private DisplayBonuses _displayBonuses;
+        private DisplayBonus _displayBonuses;
         private CameraData _cameraData;
 
 

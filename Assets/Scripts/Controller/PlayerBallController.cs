@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+
 
 namespace BallLabirynthOOP
 {
@@ -20,18 +22,13 @@ namespace BallLabirynthOOP
             _playerBallModel.PlayerBall.OnBonusPointsChangeEvent += OnBonusChangeReaction;
         }
 
-
-        private void OnBonusChangeReaction(object obj, BonusChangeEventArgs args)
+        private void OnBonusChangeReaction(object player, EventTypeCast<InteractiveObject> args)
         {
-            var player = (PlayerBall)obj;
-            var cube = (BonusCube)args.InteractiveObj;
+            var playerBall = (PlayerBall)player;
+            var cube = (BonusCube) args.InteractiveObj;
             var cubePoints = cube.Points;
             var id = cube.BonusCubeObject.GetInstanceID();
-            Debug.Log($"Bonus cube {id} send points: {cubePoints}");
-
-            var playerPoints = player.Points;
-            Debug.Log("Current Player Points: " + playerPoints);
-            player.AddBonus(cubePoints);
+            playerBall.AddBonus(cubePoints);
         }
 
 

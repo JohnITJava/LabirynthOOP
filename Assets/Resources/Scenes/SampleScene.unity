@@ -19593,6 +19593,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a9f726c8a157646a946a649b4e1403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _areaRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 800
+    height: 100
   GuiStyle:
     m_Name: 
     m_Normal:
@@ -19671,8 +19677,7 @@ MonoBehaviour:
     m_CursorColor: {r: 1, g: 1, b: 1, a: 1}
     m_CursorFlashSpeed: -1
     m_SelectionColor: {r: 0.5, g: 0.5, b: 1, a: 1}
-  _messageText: {fileID: 3206555869099675954, guid: 97dcb4d49e77aa140b242787d7f9c880,
-    type: 3}
+  GreetingMessage: {fileID: 0}
 --- !u!1 &919772832
 GameObject:
   m_ObjectHideFlags: 0

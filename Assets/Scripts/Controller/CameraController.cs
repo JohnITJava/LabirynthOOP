@@ -22,7 +22,7 @@
         }
 
 
-        public void OnBonusChangeReaction(object obj, BonusChangeEventArgs args)
+        public void OnBonusChangeReaction(object value, EventTypeCast<InteractiveObject> args)
         {
             if (((BonusCube)args.InteractiveObj).BonusType.Equals(BonusType.BadBonus))
             {

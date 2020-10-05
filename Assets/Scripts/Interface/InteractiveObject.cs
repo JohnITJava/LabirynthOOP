@@ -12,12 +12,9 @@ namespace BallLabirynthOOP
         private int _index = -1;
         private InteractiveObject _current;
 
-        protected Color _color;
-
         public event Action<InteractiveObject> OnDestroyChange;
 
         public bool IsInteractable { get; } = true;
-
 
         public InteractiveObject this[int index]
         {
@@ -25,7 +22,7 @@ namespace BallLabirynthOOP
             set => _allInteractives[index] = value;
         }
 
-        public InteractiveObject() { }
+        public InteractiveObject() { }   
 
         public InteractiveObject(List<InteractiveObject> interactives)
         {
@@ -33,9 +30,10 @@ namespace BallLabirynthOOP
             _allInteractives.Sort();
         }
 
+        public InteractiveObject Current => _current;
+
         public int Count => _allInteractives.Count;
 
-        public InteractiveObject Current => _current;
 
         object IEnumerator.Current => _allInteractives[_index];
 

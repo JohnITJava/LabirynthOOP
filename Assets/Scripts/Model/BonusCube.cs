@@ -29,9 +29,8 @@ namespace BallLabirynthOOP
         private CubeTypeBehaviour _behaviourType;
         private RaycastHit _hit;
 
-        private event Action<string, Color> _onPlayerDamageCaught = delegate (string cubeId, Color cubeColor) { };
         private CubeTypeBehaviourDelegate _cubeTypeBehaviourDelegate;
-        
+
         private int _points;
         private float _lengthFlay;
         private float _speedRotation;
@@ -45,9 +44,6 @@ namespace BallLabirynthOOP
             BonusCubeObject = cube;
             Initialization(cube);
             _cubeTypeBehaviourDelegate = new CubeTypeBehaviourDelegate(this);
-
-            var id = cube.GetInstanceID();
-            Debug.Log($"Cube {id} creates with Bonuses: {_points}");
         }
 
         public BonusType BonusType => _bonusType;
@@ -134,8 +130,7 @@ namespace BallLabirynthOOP
         public override void Interaction()
         {
             _cubeTypeBehaviourDelegate[_behaviourType]?.Invoke();
-            _onPlayerDamageCaught.Invoke(BonusCubeObject.name, _renderer.material.color);
-        } 
+        }
 
 
         public override void Fly()

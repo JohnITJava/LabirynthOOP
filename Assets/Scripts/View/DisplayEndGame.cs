@@ -6,23 +6,22 @@ using UnityEngine.UI;
 namespace BallLabirynthOOP
 {
 
-    public sealed class DisplayEndGame
+    [Serializable]
+    public sealed class DisplayEndGame : DisplayInfoBase
     {
+        public string FinishGameLabel = "Game over! You loose. You was killed by [{0}] of [{1}] color \n" +
+                                        "50$ and u can try again! I believe U CAN WIN!";
 
-        private Text _finishGameLabel;
-
-
-        public DisplayEndGame(Text finishGameLabel)
+        public DisplayEndGame(EnemyInfo info)
         {
-            _finishGameLabel = finishGameLabel;
-            _finishGameLabel.text = String.Empty;
+            var playerBall = (PlayerBall)player;
+            playerBall.OnBonusPointsChangeEvent += GameOverEventReaction;
         }
 
 
-        public void GameOver(object o, Color color)
+        private void GameOverEventReaction(EnemyInfo info)
         {
-            _finishGameLabel.text = $"Game over! You loose. You was killed by {((GameObject)o).name} of {color} color \n" +
-                                    $"50$ and u can try again! I believe U CAN WIN!";
+            var msg = info.ToString(FinishGameLabel);
         }
     }
 }

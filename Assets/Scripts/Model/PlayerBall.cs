@@ -13,8 +13,9 @@ namespace BallLabirynthOOP
         public float StartedHPBonus = 100.0f;
 
 
-        private event EventHandler<BonusChangeEventArgs> _onBonusChangeSigners;
-        private DisplayBonuses _displayBonuses;
+        private event EventHandler<EventTypeCast<InteractiveObject>> _onBonusChangeSigners;
+        private event Action<EnemyInfo> _onDamageCaughtSigners = delegate (EnemyInfo enemyInfo) { };
+        private DisplayBonus _displayBonuses;
 
         //In future we will suppose point ~ hp
         private float _bonusPoints;
@@ -26,13 +27,19 @@ namespace BallLabirynthOOP
             Speed = speed;
             StartPosition = startPosition;
             _bonusPoints = StartedHPBonus;
-            _displayBonuses = new DisplayBonuses(StartedHPBonus);
+            _displayBonuses = new DisplayBonus(this);
         }
 
-        public event EventHandler<BonusChangeEventArgs> OnBonusPointsChangeEvent
+        public event EventHandler<EventTypeCast<InteractiveObject>> OnBonusPointsChangeEvent
         {
             add { _onBonusChangeSigners += value; }
             remove { _onBonusChangeSigners -= value; }
+        }
+
+        public event Action<EnemyInfo> OnDamageCaughtEvent
+        {
+            add { _onDamageCaughtSigners += value; }
+            remove { _onDamageCaughtSigners -= value; }
         }
 
         public float Points
@@ -40,7 +47,7 @@ namespace BallLabirynthOOP
             get => _bonusPoints;
             private set
             {
-                var inputPoint = value;                
+                var inputPoint = value;
                 _bonusPoints += value;
 
                 _displayBonuses.DisplayBonusInfo(inputPoint, _bonusPoints);
@@ -52,9 +59,15 @@ namespace BallLabirynthOOP
             Points = bonus;
         }
 
-        public void EventSignersInvoke(InteractiveObject obj)
+        public void EventSignersInvoke(InteractiveObject cube)
         {
-            _onBonusChangeSigners?.Invoke(this, new BonusChangeEventArgs(obj));
+            _onBonusChangeSigners?.Invoke(this, new EventTypeCast<InteractiveObject>(cube));
+
+            BonusCube bonusCube = (BonusCube)cube;
+            _onDamageCaughtSigners.Invoke(new EnemyInfo(
+                bonusCube.GetType(),
+                bonusCube.BonusCubeObject.GetInstanceID().ToString(),
+                bonusCube.BonusCubeObject.GetComponent<Renderer>().material.color));
         }
 
 

@@ -1,34 +1,34 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 
 namespace BallLabirynthOOP
 {
-
-    public sealed class DisplayBonuses
+    [Serializable]
+    public sealed class DisplayBonus : DisplayInfoBase
     {
-        private const float STARTED_POINT_NULL_DEFINITION = -101.0001f;
-        private GUIDisplay _guiDisplay;
+        public float StartedMessageDefinition = -101.0001f;
+        public string PlayerCaughtMsg = "Player was caught by Type: [{0}] - ID: [{1}] with Color: [{2}]";
 
-
-        public DisplayBonuses(float playerPoints)
+        public DisplayBonus(PlayerBase player)
         {
-            _guiDisplay = GUIDisplay.Instance;
-            DisplayBonusInfo(STARTED_POINT_NULL_DEFINITION, playerPoints);
+            var playerBall = (PlayerBall)player;
+
+            DisplayBonusInfo(StartedMessageDefinition, playerBall.StartedHPBonus);
+            playerBall.OnDamageCaughtEvent += DisplayEnemyInfo;
         }
 
         public void DisplayBonusInfo(float inputBonus, float ammountBonus)
         {
             var startMsg = PrepareInfoMessage(inputBonus, ammountBonus);
-            _guiDisplay.Display(startMsg);
+            base.Display(startMsg);
         }
 
         private string PrepareInfoMessage(float inputBonus, float ammountBonus)
         {
             var msg = "";
             float playerPoints = ammountBonus;
-            Debug.Log($"In PREPARE method points in: [{inputBonus}] SUMM: [{playerPoints}]");
-
-            if (inputBonus == STARTED_POINT_NULL_DEFINITION)
+            if (inputBonus == StartedMessageDefinition)
             {
                 msg = $"STARTED. CURRENT {playerPoints}";
             }
@@ -41,6 +41,12 @@ namespace BallLabirynthOOP
                 msg = $"LOOSE {inputBonus} points: CURRENT {playerPoints}";
             }
             return msg;
+        }
+
+        private void DisplayEnemyInfo(EnemyInfo info)
+        {
+            var msg = info.ToString(PlayerCaughtMsg);
+            base.Display(msg);
         }
     }
 }
