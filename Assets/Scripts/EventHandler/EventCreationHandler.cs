@@ -1,0 +1,6 @@
+﻿namespace BallLabirynthOOP
+{
+    class EventCreationHandler
+    {
+    }
+}
