@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace BallLabirynthOOP
 {
@@ -22,7 +20,7 @@ namespace BallLabirynthOOP
             set => _allInteractives[index] = value;
         }
 
-        public InteractiveObject() { }   
+        public InteractiveObject() { }
 
         public InteractiveObject(List<InteractiveObject> interactives)
         {

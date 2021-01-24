@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 
@@ -18,7 +16,7 @@ namespace BallLabirynthOOP
 
         private static byte GetRandNumOfTypeBehaviour()
         {
-            return (byte) Random.Range(0, Enum.GetValues(typeof(CubeTypeBehaviour)).Length);
+            return (byte)Random.Range(0, Enum.GetValues(typeof(CubeTypeBehaviour)).Length);
         }
 
         public static CubeTypeBehaviour SelectRandCubeBehaviour()

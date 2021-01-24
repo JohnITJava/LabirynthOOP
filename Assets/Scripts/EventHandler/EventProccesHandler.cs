@@ -1,6 +1,6 @@
 ﻿namespace BallLabirynthOOP
 {
-   public class EventProcessHandler
+    public class EventProcessHandler
     {
     }
 }

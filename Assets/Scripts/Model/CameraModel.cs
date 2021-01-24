@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-
-
-namespace BallLabirynthOOP
+﻿namespace BallLabirynthOOP
 {
     public sealed class CameraModel
     {

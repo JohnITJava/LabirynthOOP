@@ -27,7 +27,7 @@
             if (((BonusCube)args.InteractiveObj).BonusType.Equals(BonusType.BadBonus))
             {
                 _cameraModel.CameraView.ShakeTrigger(true);
-            }         
+            }
         }
 
 

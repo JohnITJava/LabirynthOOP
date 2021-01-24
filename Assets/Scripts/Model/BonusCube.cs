@@ -1,8 +1,8 @@
 ﻿using System;
-using UnityEngine;
 using System.Linq;
-using Random = UnityEngine.Random;
+using UnityEngine;
 using static BallLabirynthOOP.CubeTypeBehaviourWrapper;
+using Random = UnityEngine.Random;
 
 
 

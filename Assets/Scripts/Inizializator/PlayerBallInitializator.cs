@@ -8,15 +8,15 @@ namespace BallLabirynthOOP
         public PlayerBallInitializator(MainController mainController, PlayerBallData ballData, CameraData cameraData)
         {
             var spawnedBall = Object.Instantiate(
-                ballData.PlayerBall.Ball, 
+                ballData.PlayerBall.Ball,
                 ballData.PlayerBall.StartPosition,
                 Quaternion.identity);
 
             var playerBall = new PlayerBall(
-                spawnedBall, 
-                ballData.PlayerBall.Speed, 
+                spawnedBall,
+                ballData.PlayerBall.Speed,
                 ballData.PlayerBall.StartPosition);
-           
+
             cameraData.PlayerBallReference = playerBall;
 
             var playerBallModel = new PlayerBallModel(playerBall);

@@ -1,6 +1,4 @@
 ﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
 
 
 namespace BallLabirynthOOP
@@ -14,8 +12,8 @@ namespace BallLabirynthOOP
 
         public DisplayEndGame(EnemyInfo info)
         {
-            var playerBall = (PlayerBall)player;
-            playerBall.OnBonusPointsChangeEvent += GameOverEventReaction;
+            //var playerBall = (PlayerBall) player;
+            //playerBall.OnBonusPointsChangeEvent += GameOverEventReaction;
         }
 
 

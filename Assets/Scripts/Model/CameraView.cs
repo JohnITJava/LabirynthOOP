@@ -1,7 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+
+/* Unmerged change from project 'Assembly-CSharp.Player'
+Before:
 using System;
-using Rand = UnityEngine.Random;
+After:
 using System.Collections;
+using UnityEngine;
+*/
+using UnityEngine;
+using Rand = UnityEngine.Random;
 
 namespace BallLabirynthOOP
 {
