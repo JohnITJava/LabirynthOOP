@@ -1,7 +1,7 @@
 ﻿namespace BallLabirynthOOP
 {
-    public interface IUpdateble
+    public interface IUpdateble : IController
     {
-        void UpdateTick();
+       void Execute(float deltaTime);
     }
 }

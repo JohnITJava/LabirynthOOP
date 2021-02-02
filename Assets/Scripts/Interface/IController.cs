@@ -1,6 +1,7 @@
 ﻿namespace BallLabirynthOOP
 {
-    public interface ISubscribable
+    public interface IController
     {
+
     }
 }

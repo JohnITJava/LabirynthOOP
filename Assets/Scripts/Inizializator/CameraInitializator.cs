@@ -3,9 +3,9 @@
 
 namespace BallLabirynthOOP
 {
-    public sealed class CameraInitializator
+    internal sealed class CameraInitializator
     {
-        public CameraInitializator(MainController mainController, CameraData cameraData)
+        internal CameraInitializator(ControllersExecutor controllersExecutor, CameraData cameraData)
         {
 
             var createdCamera = Object.Instantiate(cameraData.MainCamera,
@@ -24,8 +24,8 @@ namespace BallLabirynthOOP
 
             var cameraController = new CameraController(cameraModel);
 
-            mainController.AddUpdatable(cameraController);
-            mainController.AddLateUpdatable(cameraController);
+            controllersExecutor.Add(cameraController);
+            controllersExecutor.Add(cameraController);
         }
     }
 }

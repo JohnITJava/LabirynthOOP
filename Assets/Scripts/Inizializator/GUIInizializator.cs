@@ -1,12 +1,12 @@
 ﻿namespace BallLabirynthOOP
 {
-    public sealed class GUIInizializator
+    internal sealed class GUIInizializator
     {
         private MainController _mainController;
 
-        public GUIInizializator(MainController mainController)
+        internal GUIInizializator(ControllersExecutor controllersExecutor)
         {
-            mainController.AddGuiUpdatable(new GUIController());
+            controllersExecutor.Add(new GUIController());
         }
     }
 }

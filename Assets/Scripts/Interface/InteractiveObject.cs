@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
 namespace BallLabirynthOOP
 {
     public abstract class InteractiveObject : DisposeBasic, IInteractable, IFly, IFlicker, IRotation, IComparable, IIteratable<InteractiveObject>
@@ -99,7 +100,9 @@ namespace BallLabirynthOOP
             throw new NotImplementedException();
         }
 
-        public virtual void Initialization() { throw new NotImplementedException(); }
+        public virtual void Initialization() { 
+            //throw new NotImplementedException(); 
+        }
 
     }
 }

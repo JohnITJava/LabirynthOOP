@@ -3,9 +3,9 @@
 
 namespace BallLabirynthOOP
 {
-    public sealed class PlayerBallInitializator
+    internal sealed class PlayerBallInitializator
     {
-        public PlayerBallInitializator(MainController mainController, PlayerBallData ballData, CameraData cameraData)
+        internal PlayerBallInitializator(ControllersExecutor controllersExecutor, PlayerBallData ballData, CameraData cameraData)
         {
             var spawnedBall = Object.Instantiate(
                 ballData.PlayerBall.Ball,
@@ -20,7 +20,7 @@ namespace BallLabirynthOOP
             cameraData.PlayerBallReference = playerBall;
 
             var playerBallModel = new PlayerBallModel(playerBall);
-            mainController.AddUpdatable(new PlayerBallController(playerBallModel));
+            controllersExecutor.Add(new PlayerBallController(playerBallModel));
         }
     }
 }
