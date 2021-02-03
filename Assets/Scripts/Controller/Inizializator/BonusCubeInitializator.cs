@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BallLabirynthOOP
 {
-    internal sealed class BonusCubeInitializator
+    internal sealed class BonusCubeInitializator : IInizialization
     {
         internal BonusCubeInitializator(ControllersExecutor controllersExecutor, BonusCubeData bonusData, CameraData cameraData)
         {
@@ -15,5 +15,6 @@ namespace BallLabirynthOOP
             controllersExecutor.Add(bonusCubeController);
         }
 
+        public void Initialization() {}
     }
 }

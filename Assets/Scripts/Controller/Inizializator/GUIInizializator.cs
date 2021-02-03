@@ -1,6 +1,6 @@
 ﻿namespace BallLabirynthOOP
 {
-    internal sealed class GUIInizializator
+    internal sealed class GUIInizializator : IInizialization
     {
         private MainController _mainController;
 
@@ -8,5 +8,7 @@
         {
             controllersExecutor.Add(new GUIController());
         }
+
+        public void Initialization() {}
     }
 }

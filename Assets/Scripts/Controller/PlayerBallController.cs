@@ -32,9 +32,6 @@ namespace BallLabirynthOOP
         }
 
 
-        public void Execute(float deltaTime)
-        {
-            _playerBallModel.PlayerBall.Move();
-        }
+        public void Execute(float deltaTime) { }
     }
 }

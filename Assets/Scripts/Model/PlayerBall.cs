@@ -15,6 +15,7 @@ namespace BallLabirynthOOP
 
         private event EventHandler<EventTypeCast<InteractiveObject>> _onBonusChangeSigners;
         private event Action<EnemyInfo> _onDamageCaughtSigners = delegate (EnemyInfo enemyInfo) { };
+
         private DisplayBonus _displayBonuses;
 
         //In future we will suppose point ~ hp
@@ -71,11 +72,11 @@ namespace BallLabirynthOOP
         }
 
 
-        public override void Move()
+        public override void Move(float horizontal, float vertical)
         {
-            float moveHorizontal = Input.GetAxis("Horizontal");
-            float moveVertical = Input.GetAxis("Vertical");
-            Vector3 movement = new Vector3(-moveHorizontal, 0.0f, -moveVertical);
+            base.Move(horizontal, vertical);
+
+            Vector3 movement = new Vector3(-_moveHorizontal, 0.0f, -_moveVertical);   
             var rigidBody = Ball.GetComponent<Rigidbody>();
             rigidBody.AddForce(movement * Speed);
         }

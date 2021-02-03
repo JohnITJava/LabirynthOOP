@@ -3,7 +3,7 @@
 
 namespace BallLabirynthOOP
 {
-    internal sealed class CameraInitializator
+    internal sealed class CameraInitializator : IInizialization
     {
         internal CameraInitializator(ControllersExecutor controllersExecutor, CameraData cameraData)
         {
@@ -27,5 +27,7 @@ namespace BallLabirynthOOP
             controllersExecutor.Add(cameraController);
             controllersExecutor.Add(cameraController);
         }
+
+        public void Initialization() {}
     }
 }

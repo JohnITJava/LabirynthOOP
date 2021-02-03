@@ -20,6 +20,7 @@ namespace BallLabirynthOOP
         {
             _controllersExecutor = new ControllersExecutor();
             new MainControllerInitializator(_controllersExecutor, _data);
+            _controllersExecutor.Initialization();
         }
 
         private void Update()
