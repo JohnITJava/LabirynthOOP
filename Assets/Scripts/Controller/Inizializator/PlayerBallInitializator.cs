@@ -24,6 +24,7 @@ namespace BallLabirynthOOP
             cameraData.PlayerBallReference = playerBall;
 
             _playerBallModel = new PlayerBallModel(playerBall);
+
             controllersExecutor.Add(new PlayerBallController(_playerBallModel));
         }
 
