@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace BallLabirynthOOP
 {
-    public sealed class BonusCubeController : IUpdateble, IFixedUpdateble, IDrawUpdateble
+    internal sealed class BonusCubeController : IUpdateble, IFixedUpdateble, IDrawUpdateble
     {
         private List<BonusCubeModel> _bonusModels = new List<BonusCubeModel>();
         private DisplayBonus _displayBonuses;
@@ -15,7 +15,7 @@ namespace BallLabirynthOOP
         public List<BonusCubeModel> BonusCubeModels => _bonusModels;
 
 
-        public BonusCubeController(BonusCubeData cubeData, CameraData cameraData)
+        internal BonusCubeController(BonusCubeData cubeData, CameraData cameraData)
         {
             _cameraData = cameraData;
 
@@ -33,7 +33,7 @@ namespace BallLabirynthOOP
             }
         }
 
-        void IUpdateble.UpdateTick()
+        public void Execute(float deltaTime)
         {
             for (int i = 0; i < _bonusModels.Count; i++)
             {
@@ -42,7 +42,7 @@ namespace BallLabirynthOOP
 
         }
 
-        void IFixedUpdateble.UpdateTick()
+        public void FixedExecute(float deltaTime)
         {
             for (int i = 0; i < _bonusModels.Count; i++)
             {
@@ -50,7 +50,7 @@ namespace BallLabirynthOOP
             }
         }
 
-        void IDrawUpdateble.UpdateTick()
+        public void DrawExecute(float deltaTime)
         {
             for (int i = 0; i < _bonusModels.Count; i++)
             {

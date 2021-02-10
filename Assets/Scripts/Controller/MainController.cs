@@ -1,93 +1,61 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 
 
 namespace BallLabirynthOOP
 {
     public sealed class MainController : MonoBehaviour
     {
+        [SerializeField] private Data _data;
 
-        [SerializeField] private PlayerBallData _playerBallData;
-        [SerializeField] private BonusCubeData _bonusCubeData;
-        [SerializeField] private CameraData _cameraData;
+        private ControllersExecutor _controllersExecutor;
 
-
-        private List<IUpdateble> _iUpdatables = new List<IUpdateble>();
-        private List<ILateUpdateble> _lateUpdatables = new List<ILateUpdateble>();
-        private List<IFixedUpdateble> _fixedUpdatables = new List<IFixedUpdateble>();
-        private List<IDrawUpdateble> _drawUpdatebles = new List<IDrawUpdateble>();
-        private List<IGuiUpdateble> _iGuiUpdatebles = new List<IGuiUpdateble>();
+        private float _updateDeltaTime;
+        private float _lateDeltaTime;
+        private float _fixedDeltaTime;
+        private float _drawDeltaTime;
+        private float _guiDeltaTime;
 
 
         private void Start()
         {
-            new InitializeController(this, _playerBallData, _bonusCubeData, _cameraData);
+            _controllersExecutor = new ControllersExecutor();
+            new MainControllerInitializator(_controllersExecutor, _data);
+            _controllersExecutor.Initialization();
         }
 
         private void Update()
         {
-            for (int i = 0; i < _iUpdatables.Count; i++)
-            {
-                _iUpdatables[i].UpdateTick();
-            }
+            _updateDeltaTime = Time.deltaTime;
+            _controllersExecutor.Execute(_updateDeltaTime);
         }
 
         private void LateUpdate()
         {
-            for (int i = 0; i < _lateUpdatables.Count; i++)
-            {
-                _lateUpdatables[i].UpdateTick();
-            }
+            _lateDeltaTime = Time.deltaTime;
+            _controllersExecutor.LateExecute(_lateDeltaTime);
         }
 
         private void FixedUpdate()
         {
-            for (int i = 0; i < _fixedUpdatables.Count; i++)
-            {
-                _fixedUpdatables[i].UpdateTick();
-            }
+            _fixedDeltaTime = Time.deltaTime;
+            _controllersExecutor.FixedExecute(_fixedDeltaTime);
         }
 
-        private void OnDrawGizmos()
-        {
-            for (int i = 0; i < _drawUpdatebles.Count; i++)
-            {
-                _drawUpdatebles[i].UpdateTick();
-            }
-        }
+        //private void OnDrawGizmos()
+        //{
+        //_drawDeltaTime = Time.deltaTime;
+        //_controllersExecutor.DrawExecute(_drawDeltaTime);
+        //}
 
         private void OnGUI()
         {
-            for (int i = 0; i < _iGuiUpdatebles.Count; i++)
-            {
-                _iGuiUpdatebles[i].UpdateTick();
-            }
+            _guiDeltaTime = Time.deltaTime;
+            _controllersExecutor.GuiExecute(_guiDeltaTime);
         }
 
-
-        public void AddUpdatable(IUpdateble updateble)
+        private void OnDestroy()
         {
-            _iUpdatables.Add(updateble);
-        }
-
-        public void AddLateUpdatable(ILateUpdateble updateble)
-        {
-            _lateUpdatables.Add(updateble);
-        }
-
-        public void AddFixedUpdatable(IFixedUpdateble updateble)
-        {
-            _fixedUpdatables.Add(updateble);
-        }
-
-        public void AddDrawUpdatable(IDrawUpdateble updateble)
-        {
-            _drawUpdatebles.Add(updateble);
-        }
-
-        public void AddGuiUpdatable(IGuiUpdateble updateble)
-        {
-            _iGuiUpdatebles.Add(updateble);
+            _controllersExecutor.Cleanup();
         }
     }
 }

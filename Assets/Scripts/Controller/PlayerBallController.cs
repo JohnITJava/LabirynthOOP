@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace BallLabirynthOOP
 {
-    public sealed class PlayerBallController : IUpdateble
+    internal sealed class PlayerBallController : IUpdateble
     {
 
         private PlayerBallModel _playerBallModel;
 
 
-        public PlayerBallController(PlayerBallModel playerBallModel)
+        internal PlayerBallController(PlayerBallModel playerBallModel)
         {
             _playerBallModel = playerBallModel;
             SignToBonusChangeEvent();
@@ -32,9 +32,6 @@ namespace BallLabirynthOOP
         }
 
 
-        public void UpdateTick()
-        {
-            _playerBallModel.PlayerBall.Move();
-        }
+        public void Execute(float deltaTime) { }
     }
 }

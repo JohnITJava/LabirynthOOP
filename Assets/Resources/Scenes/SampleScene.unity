@@ -19578,9 +19578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97fc19d7d57816743929fc3a9cfd5fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerBallData: {fileID: 11400000, guid: f11c624f92439664abe41a1437949f20, type: 2}
-  _bonusCubeData: {fileID: 11400000, guid: 963ea6939b858a84cbbfacb133749a39, type: 2}
-  _cameraData: {fileID: 11400000, guid: 80cdb58a9adb8194daf8ca5883156099, type: 2}
+  _data: {fileID: 11400000, guid: d7ba50ae95116ca4898f56b43fc02dfc, type: 2}
 --- !u!114 &916293707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19599,7 +19597,7 @@ MonoBehaviour:
     y: 0
     width: 800
     height: 100
-  GuiStyle:
+  _guiStyle:
     m_Name: 
     m_Normal:
       m_Background: {fileID: 0}
@@ -19666,18 +19664,18 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  GuiSkin: {fileID: 0}
-  GuiContent:
+  _guiSkin: {fileID: 0}
+  _guiContent:
     m_Text: 
     m_Image: {fileID: 0}
     m_Tooltip: 
-  GuiSettings:
+  _guiSettings:
     m_DoubleClickSelectsWord: 1
     m_TripleClickSelectsLine: 1
     m_CursorColor: {r: 1, g: 1, b: 1, a: 1}
     m_CursorFlashSpeed: -1
     m_SelectionColor: {r: 0.5, g: 0.5, b: 1, a: 1}
-  GreetingMessage: {fileID: 0}
+  _greetingMessage: {fileID: 0}
 --- !u!1 &919772832
 GameObject:
   m_ObjectHideFlags: 0

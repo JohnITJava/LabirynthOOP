@@ -1,10 +1,10 @@
 ﻿namespace BallLabirynthOOP
 {
-    public sealed class GUIController : IGuiUpdateble
+    internal sealed class GUIController : IGuiUpdateble
     {
-        public GUIController() { }
+        internal GUIController() { }
 
-        public void UpdateTick()
+        public void GuiExecute(float deltaTime)
         {
 
         }

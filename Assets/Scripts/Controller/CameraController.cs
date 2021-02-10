@@ -1,6 +1,6 @@
 ﻿namespace BallLabirynthOOP
 {
-    public sealed class CameraController : IUpdateble, ILateUpdateble
+    internal sealed class CameraController : IUpdateble, ILateUpdateble
     {
 
         private const float START_ELAPSE = 0.0f;
@@ -9,7 +9,7 @@
         private CameraData _cameraData;
 
 
-        public CameraController(CameraModel cameraModel)
+        internal CameraController(CameraModel cameraModel)
         {
             _cameraModel = cameraModel;
             SignToBonusChangeEvent();
@@ -31,7 +31,7 @@
         }
 
 
-        void IUpdateble.UpdateTick()
+        public void Execute(float deltaTime)
         {
             if (_cameraModel.CameraView.IsShakeTriggered)
             {
@@ -39,7 +39,7 @@
             }
         }
 
-        void ILateUpdateble.UpdateTick()
+        public void LateExecute(float deltaTime)
         {
             _cameraModel.CameraView.LateMove();
         }

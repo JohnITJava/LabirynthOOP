@@ -5,12 +5,15 @@ using System;
 namespace BallLabirynthOOP
 {
     [Serializable]
-    public class PlayerBase
+    public class PlayerBase : IMove
     {
-        protected Rigidbody _rigidbody;
-
         public float Speed;
         public Vector3 StartPosition;
+
+        protected Rigidbody _rigidbody;
+
+        protected float _moveHorizontal;
+        protected float _moveVertical;
 
         public Rigidbody Rigidbody
         {
@@ -30,12 +33,10 @@ namespace BallLabirynthOOP
         }
 
 
-        public virtual void Move()
+        public virtual void Move(float horizontal, float vertical)
         {
-            float moveHorizontal = Input.GetAxis("Horizontal");
-            float moveVertical = Input.GetAxis("Vertical");
-            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-            Rigidbody.AddForce(movement * Speed);
+            _moveHorizontal = horizontal;
+            _moveVertical = vertical;
         }
     }
 }

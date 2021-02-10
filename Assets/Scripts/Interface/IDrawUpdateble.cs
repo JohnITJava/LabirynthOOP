@@ -1,7 +1,7 @@
 ﻿namespace BallLabirynthOOP
 {
-    public interface IDrawUpdateble
+    public interface IDrawUpdateble : IController
     {
-        void UpdateTick();
+        void DrawExecute(float deltaTime);
     }
 }
