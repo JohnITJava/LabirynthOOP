@@ -20,9 +20,9 @@ namespace BallLabirynthOOP
             _cameraData = cameraData;
 
             GameObject bonusCubeObj = null;
-            for (int i = 0; i < Constants.BonusPositions.Count; i++)
+            for (int i = 0; i < Positions.BonusPositions.Count; i++)
             {
-                bonusCubeObj = Object.Instantiate(cubeData.BonusCube.BonusCubeObject, Constants.BonusPositions[i], Quaternion.identity);
+                bonusCubeObj = Object.Instantiate(cubeData.BonusCube.BonusCubeObject, Positions.BonusPositions[i], Quaternion.identity);
                 BonusCube bonusCube = new BonusCube(bonusCubeObj);
 
                 var bonusCubeModel = new BonusCubeModel(bonusCube);

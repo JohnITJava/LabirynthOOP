@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace BallLabirynthOOP
 {
-    public interface IPlayerFactory
+    public interface IEnemyMove
     {
-        object CreatePlayer();
+        void Move(Vector3 point);
     }
 }

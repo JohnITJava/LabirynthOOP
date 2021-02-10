@@ -5,7 +5,6 @@ using static BallLabirynthOOP.CubeTypeBehaviourWrapper;
 using Random = UnityEngine.Random;
 
 
-
 namespace BallLabirynthOOP
 {
 

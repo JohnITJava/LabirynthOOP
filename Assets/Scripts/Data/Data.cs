@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using UnityEngine;
-using static BallLabirynthOOP.LabirynthConstants;
+using static BallLabirynthOOP.DataPaths;
 
 
 namespace BallLabirynthOOP

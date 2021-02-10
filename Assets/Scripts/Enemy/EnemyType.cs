@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace BallLabirynthOOP
 {
-    public interface IPlayerFactory
+    public enum EnemyType
     {
-        object CreatePlayer();
+        Cube = 0,
     }
 }

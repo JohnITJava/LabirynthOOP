@@ -5,7 +5,9 @@
         internal MainControllerInitializator(ControllersExecutor controllersExecutor, Data data)
         {
 
-            var playerBallInit = new PlayerBallInitializator(controllersExecutor, data.PlayerData, data.CameraData);
+            var playerFactory = new PlayerFactory(data.PlayerData);
+
+            var playerBallInit = new PlayerBallInitializator(controllersExecutor, playerFactory, data.CameraData);
 
             new CameraInitializator(controllersExecutor, data.CameraData);
 

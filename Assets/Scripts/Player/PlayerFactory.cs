@@ -20,6 +20,7 @@ namespace BallLabirynthOOP
                _playerData.PlayerBall.StartPosition,
                Quaternion.identity);
 
+
             var playerBall = new PlayerBall(
                 spawnedBall,
                 _playerData.PlayerBall.Speed,

@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c52b5a714d0b85b4c842533a6de7c7e7, type: 3}
-  m_Name: PlayerBallData
+  m_Script: {fileID: 11500000, guid: 6f4efd1618859cf49ab8b89fdd04e9b3, type: 3}
+  m_Name: EnemySettings
   m_EditorClassIdentifier: 
-  PlayerBall:
-    Speed: 3
-    StartPosition: {x: -1, y: 0.7, z: 14}
-    Ball: {fileID: 1823417170369058712, guid: fc7a3ff7efc82474f9ac527f26a3c345, type: 3}
-    StartedHPBonus: 100
