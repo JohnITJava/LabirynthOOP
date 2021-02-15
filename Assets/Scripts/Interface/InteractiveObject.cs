@@ -12,6 +12,7 @@ namespace BallLabirynthOOP
         private InteractiveObject _current;
 
         public event Action<InteractiveObject> OnDestroyChange;
+        //public event Action<InteractiveObject> OnDestroyChange;
 
         public bool IsInteractable { get; } = true;
 

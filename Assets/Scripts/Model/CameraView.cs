@@ -33,7 +33,7 @@ namespace BallLabirynthOOP
             _cameraData = cameraData;
         }
 
-        public PlayerBall PlayerBall => _player;
+        public PlayerBall Player => _player;
 
         public bool IsShakeTriggered => _isShakeTriggered;
 

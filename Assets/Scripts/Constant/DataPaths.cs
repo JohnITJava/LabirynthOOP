@@ -6,6 +6,7 @@
         public const string PlayerBallDataPath = "PlayerBallData";
         public const string BonusCubeDataPath = "BonusCubeData";
         public const string CameraDataPath = "CameraData";
+        public const string EnemyDataPath = "EnemyData";
 
     }
 }

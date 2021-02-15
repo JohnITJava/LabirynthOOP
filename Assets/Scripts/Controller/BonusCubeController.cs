@@ -61,7 +61,7 @@ namespace BallLabirynthOOP
         private void InteractiveObjectOnDestroyChange(InteractiveObject obj)
         {
             var cube = (BonusCube)obj;
-            _cameraData.CameraView.PlayerBall.EventSignersInvoke(cube);
+            _cameraData.CameraView.Player.EventSignersInvoke(cube);
             obj.OnDestroyChange -= InteractiveObjectOnDestroyChange;
             var relativeModel = _bonusModels.First(e => e.BonusCube.Equals(cube));
             if (relativeModel != null)

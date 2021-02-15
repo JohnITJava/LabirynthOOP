@@ -6,6 +6,6 @@ namespace BallLabirynthOOP
 {
     public interface IEnemy : IEnemyMove
     {
-        event Action<int> OnTriggerEnterChange;
+        event Action<IEnemy> EnemyOnDestroyChange;
     }
 }

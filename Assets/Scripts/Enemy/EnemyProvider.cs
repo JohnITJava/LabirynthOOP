@@ -4,14 +4,12 @@ using UnityEngine;
 
 namespace BallLabirynthOOP
 {
-    public sealed class EnemyProvider : IEnemy
+    [Serializable]
+    public sealed class EnemyProvider
     {
-        public event Action<int> OnTriggerEnterChange = delegate { };
+        [SerializeField]
+        private GameObject _enemyPrefab;
 
-
-        public void Move(Vector3 point)
-        {
-            throw new NotImplementedException();
-        }
+        public GameObject EnemyPrefab() => _enemyPrefab;
     }
 }

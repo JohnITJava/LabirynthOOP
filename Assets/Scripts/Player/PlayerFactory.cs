@@ -18,7 +18,8 @@ namespace BallLabirynthOOP
             var spawnedBall = UnityEngine.Object.Instantiate(
                _playerData.PlayerBall.Ball,
                _playerData.PlayerBall.StartPosition,
-               Quaternion.identity);
+               Quaternion.identity)
+                .SetName("Player");
 
 
             var playerBall = new PlayerBall(

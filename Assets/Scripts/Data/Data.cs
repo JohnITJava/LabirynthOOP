@@ -12,10 +12,12 @@ namespace BallLabirynthOOP
         [SerializeField] private string _playerDataPath = PlayerBallDataPath;
         [SerializeField] private string _bonusCubeDataPath = BonusCubeDataPath;
         [SerializeField] private string _cameraDataPath = CameraDataPath;
+        [SerializeField] private string _enemyDataPath = EnemyDataPath;
 
         private PlayerBallData _playerBallData;
         private BonusCubeData _bonusCubeData;
         private CameraData _cameraData;
+        private EnemyData _enemyData;
 
 
         public PlayerBallData PlayerData
@@ -57,6 +59,18 @@ namespace BallLabirynthOOP
             }
         }
 
+        public EnemyData EnemyData
+        {
+            get
+            {
+                if (_enemyData == null)
+                {
+                    _enemyData = Load<EnemyData>(DataPath + _enemyDataPath);
+                }
+
+                return _enemyData;
+            }
+        }
 
         private T Load<T>(string resoursePath) where T : Object =>
             Resources.Load<T>(Path.ChangeExtension(resoursePath, null));

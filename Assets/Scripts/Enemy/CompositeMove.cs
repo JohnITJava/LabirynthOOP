@@ -19,11 +19,19 @@ namespace BallLabirynthOOP
             _moves.Remove(unit);
         }
 
-        public void Move(Vector3 point)
+        public void Move()
         {
             for (int i = _moves.Count - 1; i >= 0; i--)
             {
-                _moves[i].Move(point);
+                _moves[i].Move();
+            }
+        }
+
+        public void OnTrigger()
+        {
+            for (int i = _moves.Count - 1; i >= 0; i--)
+            {
+                _moves[i].OnTrigger();
             }
         }
 

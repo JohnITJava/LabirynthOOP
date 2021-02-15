@@ -10,10 +10,10 @@ namespace BallLabirynthOOP
     public sealed class EnemyData : ScriptableObject
     {
         [Serializable]
-        private struct EnemyInfo
+        public struct EnemyInfo
         {
             public EnemyType Type;
-            public EnemyProvider EnemyPrefab;
+            public EnemyProvider EnemyPrefabProvider;
         }
 
         [SerializeField]
@@ -22,7 +22,7 @@ namespace BallLabirynthOOP
         public EnemyProvider GetEnemy(EnemyType type)
         {
             var enemyInfo = _enemyInfos.First(info => info.Type == type);
-            return enemyInfo.EnemyPrefab;
+            return enemyInfo.EnemyPrefabProvider;
         }
     }
 }

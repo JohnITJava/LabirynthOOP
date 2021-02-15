@@ -1,6 +1,6 @@
 ﻿namespace BallLabirynthOOP
 {
-    public interface IInizialization
+    public interface IInizialization : IController
     {
         void Initialization();
     }

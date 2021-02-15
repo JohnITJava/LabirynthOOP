@@ -9,10 +9,11 @@ namespace BallLabirynthOOP
 {
 
     [Serializable]
-    public sealed class BonusCube : InteractiveObject, IEquatable<BonusCube>
+    public sealed class BonusCube : InteractiveObject, IEquatable<BonusCube>, IEnemy
     {
-
         public GameObject BonusCubeObject;
+
+        public event Action<IEnemy> EnemyOnDestroyChange = delegate { };
 
         public float FlyMin = 1.0f;
         public float FlyMax = 5.0f;
@@ -107,6 +108,8 @@ namespace BallLabirynthOOP
             {
                 Debug.Log("Im TRIGGERED");
                 this.OnTriggerEnter();
+
+                this.EnemyOnDestroyChange?.Invoke(this);
             }
         }
 
@@ -129,6 +132,11 @@ namespace BallLabirynthOOP
         public override void Interaction()
         {
             _cubeTypeBehaviourDelegate[_behaviourType]?.Invoke();
+        }
+
+        public void Move()
+        {
+            Interaction();
         }
 
 

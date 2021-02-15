@@ -65,6 +65,7 @@ namespace BallLabirynthOOP
             _onBonusChangeSigners?.Invoke(this, new EventTypeCast<InteractiveObject>(cube));
 
             BonusCube bonusCube = (BonusCube)cube;
+
             _onDamageCaughtSigners.Invoke(new EnemyInfo(
                 bonusCube.GetType(),
                 bonusCube.BonusCubeObject.GetInstanceID().ToString(),

@@ -6,6 +6,8 @@ namespace BallLabirynthOOP
 {
     public interface IEnemyMove
     {
-        void Move(Vector3 point);
+        void Move();
+
+        void OnTrigger();
     }
 }
