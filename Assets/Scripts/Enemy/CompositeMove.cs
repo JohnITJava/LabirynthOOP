@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -21,7 +22,7 @@ namespace BallLabirynthOOP
 
         public void Move()
         {
-            for (int i = _moves.Count - 1; i >= 0; i--)
+            for (int i = 0; i < _moves.Count; i++)
             {
                 _moves[i].Move();
             }
@@ -29,7 +30,7 @@ namespace BallLabirynthOOP
 
         public void OnTrigger()
         {
-            for (int i = _moves.Count - 1; i >= 0; i--)
+            for (int i = 0; i < _moves.Count; i++)
             {
                 _moves[i].OnTrigger();
             }

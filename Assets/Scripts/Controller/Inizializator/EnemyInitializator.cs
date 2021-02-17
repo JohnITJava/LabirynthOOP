@@ -55,11 +55,14 @@ namespace BallLabirynthOOP
 
         private void OnDestroyChange(IEnemy enemy)
         {
-            BonusCube cube = (BonusCube)enemy;
+            IEnemy modelCube = _enemyFactory.FindEnemyModel(EnemyType.Cube, enemy);
+            var cube = (BonusCube)enemy;
+
             _cameraData.CameraView.Player.EventSignersInvoke(cube);
 
-            _cubeCompositeGroup.RemoveUnit(enemy);
-            _enemies.Remove(enemy);
+            _enemyFactory.RemoveEnemyModelFromAllEnemiesList(modelCube);
+            _cubeCompositeGroup.RemoveUnit(modelCube);
+            _enemies.Remove(modelCube);
 
             enemy.EnemyOnDestroyChange -= OnDestroyChange;
         }

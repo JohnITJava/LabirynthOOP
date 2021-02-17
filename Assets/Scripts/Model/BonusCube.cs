@@ -107,9 +107,9 @@ namespace BallLabirynthOOP
             if (_isTriggered && _hit.collider.CompareTag("Player"))
             {
                 Debug.Log("Im TRIGGERED");
-                this.OnTriggerEnter();
 
                 this.EnemyOnDestroyChange?.Invoke(this);
+                this.OnTriggerEnter();
             }
         }
 
