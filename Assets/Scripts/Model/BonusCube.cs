@@ -9,7 +9,7 @@ namespace BallLabirynthOOP
 {
 
     [Serializable]
-    public sealed class BonusCube : InteractiveObject, IEquatable<BonusCube>, IEnemy
+    internal sealed class BonusCube : InteractiveObject, IEquatable<BonusCube>, IEnemy
     {
         public GameObject BonusCubeObject;
 
@@ -39,7 +39,7 @@ namespace BallLabirynthOOP
 
         public BonusCube() { }
 
-        public BonusCube(GameObject cube)
+        internal BonusCube(GameObject cube)
         {
             BonusCubeObject = cube;
             Initialization(cube);

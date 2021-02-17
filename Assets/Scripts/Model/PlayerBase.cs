@@ -5,7 +5,7 @@ using System;
 namespace BallLabirynthOOP
 {
     [Serializable]
-    public class PlayerBase : IMove
+    internal class PlayerBase : IMove
     {
         public float Speed;
         public Vector3 StartPosition;
@@ -21,12 +21,12 @@ namespace BallLabirynthOOP
             set => _rigidbody = value;
         }
 
-        public PlayerBase(Rigidbody rigidbody)
+        internal PlayerBase(Rigidbody rigidbody)
         {
             _rigidbody = rigidbody;
         }
 
-        public PlayerBase(float speed, Vector3 startPosition)
+        internal PlayerBase(float speed, Vector3 startPosition)
         {
             Speed = speed;
             StartPosition = startPosition;

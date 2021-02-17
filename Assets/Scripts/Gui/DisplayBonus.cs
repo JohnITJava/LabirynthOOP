@@ -1,16 +1,15 @@
 ﻿using System;
-using UnityEngine;
 
 
 namespace BallLabirynthOOP
 {
     [Serializable]
-    public sealed class DisplayBonus : DisplayInfoBase
+    internal sealed class DisplayBonus : DisplayInfoBase
     {
         public float StartedMessageDefinition = -101.0001f;
         public string PlayerCaughtMsg = "Player was caught by Type: [{0}] - ID: [{1}] with Color: [{2}]";
 
-        public DisplayBonus(PlayerBase player)
+        internal DisplayBonus(PlayerBase player)
         {
             var playerBall = (PlayerBall)player;
 

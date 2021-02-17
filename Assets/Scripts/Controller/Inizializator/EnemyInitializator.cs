@@ -15,7 +15,7 @@ namespace BallLabirynthOOP
         private List<IEnemy> _enemies;
 
 
-        public EnemyInitializator(ControllersExecutor controllerExecutor, IEnemyFactory factory, CameraData cameraData)
+        internal EnemyInitializator(ControllersExecutor controllerExecutor, IEnemyFactory factory, CameraData cameraData)
         {
             _cameraData = cameraData;
             _enemies = new List<IEnemy>();

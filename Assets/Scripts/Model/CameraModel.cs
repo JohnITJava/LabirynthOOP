@@ -1,11 +1,11 @@
 ﻿namespace BallLabirynthOOP
 {
-    public sealed class CameraModel
+    internal sealed class CameraModel
     {
 
         private CameraView _cameraView;
 
-        public CameraModel(CameraView cameraView)
+        internal CameraModel(CameraView cameraView)
         {
             _cameraView = cameraView;
         }

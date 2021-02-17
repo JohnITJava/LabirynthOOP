@@ -1,8 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-
-namespace BallLabirynthOOP
+﻿namespace BallLabirynthOOP
 {
     public enum EnemyType
     {

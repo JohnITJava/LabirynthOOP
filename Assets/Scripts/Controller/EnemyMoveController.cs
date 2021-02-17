@@ -8,7 +8,7 @@ namespace BallLabirynthOOP
     {
         private readonly IEnemyMove _movebleGroup;
         
-        public EnemyMoveController(IEnemyMove movebleObj)
+        internal EnemyMoveController(IEnemyMove movebleObj)
         {
             _movebleGroup = movebleObj;
         }

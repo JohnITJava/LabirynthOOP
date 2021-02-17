@@ -1,11 +1,4 @@
-﻿
-/* Unmerged change from project 'Assembly-CSharp.Player'
-Before:
-using UnityEngine;
-After:
-using System;
-*/
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 

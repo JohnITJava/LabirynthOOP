@@ -1,11 +1,10 @@
 ﻿using System;
-using UnityEngine;
 
 
 namespace BallLabirynthOOP
 {
     [Serializable]
-    public sealed class Enemy
+    internal sealed class Enemy
     {
         public EnemyType type;
         public EnemyProvider EnemyPrefab;

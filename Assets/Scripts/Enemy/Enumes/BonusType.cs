@@ -1,6 +1,6 @@
 ﻿namespace BallLabirynthOOP
 {
-    public enum BonusType
+    internal enum BonusType
     {
         BadBonus,
         GoodBonus

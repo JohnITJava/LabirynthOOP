@@ -11,16 +11,6 @@ namespace BallLabirynthOOP
 
         internal PlayerBallInitializator(ControllersExecutor controllersExecutor, IPlayerFactory factory, CameraData cameraData)
         {
-            //var spawnedBall = Object.Instantiate(
-            //    ballData.PlayerBall.Ball,
-            //    ballData.PlayerBall.StartPosition,
-            //    Quaternion.identity);
-
-            //var playerBall = new PlayerBall(
-            //    spawnedBall,
-            //    ballData.PlayerBall.Speed,
-            //    ballData.PlayerBall.StartPosition);
-
             PlayerBall playerBall = (PlayerBall) factory.CreatePlayer();
 
             cameraData.PlayerBallReference = playerBall;

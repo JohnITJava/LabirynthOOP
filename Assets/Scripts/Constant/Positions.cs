@@ -6,7 +6,7 @@ using System;
 namespace BallLabirynthOOP
 {
     [Serializable]
-    public static class Positions
+    internal static class Positions
     {
         public static List<Vector3> StartPositions = new List<Vector3>() {
             new Vector3(-1.0f, 0.1f, 14.5f),

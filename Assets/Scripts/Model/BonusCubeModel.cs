@@ -1,8 +1,9 @@
 ﻿using System;
 
+
 namespace BallLabirynthOOP
 {
-    public sealed class BonusCubeModel : IEnemy
+    internal sealed class BonusCubeModel : IEnemy
     {
         private BonusCube _bonusCube;
 
@@ -10,7 +11,7 @@ namespace BallLabirynthOOP
 
         public BonusCube BonusCube => _bonusCube;
 
-        public BonusCubeModel(BonusCube bonusCube)
+        internal BonusCubeModel(BonusCube bonusCube)
         {
             _bonusCube = bonusCube;
         }

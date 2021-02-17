@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BallLabirynthOOP
 {
     [Serializable]
-    public sealed class EnemyProvider
+    internal sealed class EnemyProvider
     {
         [SerializeField]
         private GameObject _enemyPrefab;

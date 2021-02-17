@@ -6,7 +6,7 @@ using static BallLabirynthOOP.DataPaths;
 namespace BallLabirynthOOP
 {
     [CreateAssetMenu(fileName = "Data", menuName = "Data/Data")]
-    public sealed class Data : ScriptableObject
+    internal sealed class Data : ScriptableObject
     {
 
         [SerializeField] private string _playerDataPath = PlayerBallDataPath;

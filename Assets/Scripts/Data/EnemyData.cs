@@ -7,7 +7,7 @@ using UnityEngine;
 namespace BallLabirynthOOP
 {
     [CreateAssetMenu(fileName = "EnemySettings", menuName = "Data/Enemy Data")]
-    public sealed class EnemyData : ScriptableObject
+    internal sealed class EnemyData : ScriptableObject
     {
         [Serializable]
         public struct EnemyInfo

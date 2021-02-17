@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BallLabirynthOOP
 {
-    public sealed class EnemyFactory : IEnemyFactory
+    internal sealed class EnemyFactory : IEnemyFactory
     {
         private readonly EnemyData _data;
         private GameObject _enemiesBox;
@@ -15,7 +15,7 @@ namespace BallLabirynthOOP
         private int _enemyCubeCounter = 0;
 
         
-        public EnemyFactory(EnemyData data)
+        internal EnemyFactory(EnemyData data)
         {
             _allEnemiesModels = new List<IEnemy>();
             _enemiesBox = new GameObject("Enemies");

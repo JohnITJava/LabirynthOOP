@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace BallLabirynthOOP
 {
-    public sealed class PlayerFactory : IPlayerFactory
+    internal sealed class PlayerFactory : IPlayerFactory
     {
         private readonly PlayerBallData _playerData;
 
-        public PlayerFactory(PlayerBallData playerData)
+        internal PlayerFactory(PlayerBallData playerData)
         {
             _playerData = playerData;
         }

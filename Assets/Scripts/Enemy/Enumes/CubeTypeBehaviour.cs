@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace BallLabirynthOOP
 {
-    public static class CubeTypeBehaviourWrapper
+    internal static class CubeTypeBehaviourWrapper
     {
         public enum CubeTypeBehaviour : byte
         {
@@ -25,12 +25,12 @@ namespace BallLabirynthOOP
             return (CubeTypeBehaviour)Enum.ToObject(typeof(CubeTypeBehaviour), behaviourNum);
         }
 
-        public sealed class CubeTypeBehaviourDelegate
+        internal sealed class CubeTypeBehaviourDelegate
         {
             private readonly Dictionary<CubeTypeBehaviour, Action> _actions;
             private InteractiveObject _interactiveObject;
 
-            public CubeTypeBehaviourDelegate(InteractiveObject interactiveObject)
+            internal CubeTypeBehaviourDelegate(InteractiveObject interactiveObject)
             {
                 _interactiveObject = interactiveObject;
 

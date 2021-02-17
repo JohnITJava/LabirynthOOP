@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 
 namespace BallLabirynthOOP
 {
-    public sealed class CompositeMove : IEnemyMove
+    internal sealed class CompositeMove : IEnemyMove
     {
         private List<IEnemyMove> _moves = new List<IEnemyMove>();
 
