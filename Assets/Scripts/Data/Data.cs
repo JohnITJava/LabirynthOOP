@@ -13,11 +13,14 @@ namespace BallLabirynthOOP
         [SerializeField] private string _bonusCubeDataPath = BonusCubeDataPath;
         [SerializeField] private string _cameraDataPath = CameraDataPath;
         [SerializeField] private string _enemyDataPath = EnemyDataPath;
+        [SerializeField] private string _guiDisplayDataPath = GUIDisplayDataPath;
+
 
         private PlayerBallData _playerBallData;
         private BonusCubeData _bonusCubeData;
         private CameraData _cameraData;
         private EnemyData _enemyData;
+        private DisplayInfoData _displayInfoData;
 
 
         public PlayerBallData PlayerData
@@ -69,6 +72,19 @@ namespace BallLabirynthOOP
                 }
 
                 return _enemyData;
+            }
+        }
+
+        public DisplayInfoData DisplayInfoData
+        {
+            get
+            {
+                if (_displayInfoData == null)
+                {
+                    _displayInfoData = Load<DisplayInfoData>(DataPath + _guiDisplayDataPath);
+                }
+
+                return _displayInfoData;
             }
         }
 

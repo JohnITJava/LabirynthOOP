@@ -10,10 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7607416c7ab3a274b90be7b0cfa4b777, type: 3}
-  m_Name: DisplayBonus
+  m_Name: GUIDisplayData
   m_EditorClassIdentifier: 
-  DisplayBonus:
-    StartedMessageDefinition: 0
-    PlayerCaughtMsg: 
-  DisplayEndGame:
-    FinishGameLabel: 
+  Canvas: {fileID: 0}
+  InfoPanel: {fileID: 0}
+  ButtonPanel: {fileID: 0}

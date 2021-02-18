@@ -15,7 +15,7 @@
 
             //new BonusCubeInitializator(controllersExecutor, data.BonusCubeData, data.CameraData);
 
-            new GUIInizializator(controllersExecutor);
+            new GUIInizializator(controllersExecutor, data.DisplayInfoData);
 
             var inputInit = new InputInitializator(controllersExecutor);
 

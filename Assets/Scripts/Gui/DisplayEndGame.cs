@@ -3,9 +3,7 @@
 
 namespace BallLabirynthOOP
 {
-
-    [Serializable]
-    internal sealed class DisplayEndGame : DisplayInfoBase
+    internal sealed class DisplayEndGame
     {
         public string FinishGameLabel = "Game over! You loose. You was killed by [{0}] of [{1}] color \n" +
                                         "50$ and u can try again! I believe U CAN WIN!";

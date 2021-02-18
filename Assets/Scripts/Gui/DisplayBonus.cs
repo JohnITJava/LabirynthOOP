@@ -3,7 +3,6 @@
 
 namespace BallLabirynthOOP
 {
-    [Serializable]
     internal sealed class DisplayBonus : DisplayInfoBase
     {
         public float StartedMessageDefinition = -101.0001f;
