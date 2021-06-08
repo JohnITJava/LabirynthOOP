@@ -20,9 +20,9 @@ namespace BallLabirynthOOP
             _cameraData = cameraData;
 
             GameObject bonusCubeObj = null;
-            for (int i = 0; i < Constants.BonusPositions.Count; i++)
+            for (int i = 0; i < Positions.BonusPositions.Count; i++)
             {
-                bonusCubeObj = Object.Instantiate(cubeData.BonusCube.BonusCubeObject, Constants.BonusPositions[i], Quaternion.identity);
+                bonusCubeObj = Object.Instantiate(cubeData.BonusCube.BonusCubeObject, Positions.BonusPositions[i], Quaternion.identity);
                 BonusCube bonusCube = new BonusCube(bonusCubeObj);
 
                 var bonusCubeModel = new BonusCubeModel(bonusCube);
@@ -61,7 +61,7 @@ namespace BallLabirynthOOP
         private void InteractiveObjectOnDestroyChange(InteractiveObject obj)
         {
             var cube = (BonusCube)obj;
-            _cameraData.CameraView.PlayerBall.EventSignersInvoke(cube);
+            _cameraData.CameraView.Player.EventSignersInvoke(cube);
             obj.OnDestroyChange -= InteractiveObjectOnDestroyChange;
             var relativeModel = _bonusModels.First(e => e.BonusCube.Equals(cube));
             if (relativeModel != null)

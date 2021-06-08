@@ -16,4 +16,4 @@ MonoBehaviour:
     Speed: 3
     StartPosition: {x: -1, y: 0.7, z: 14}
     Ball: {fileID: 1823417170369058712, guid: fc7a3ff7efc82474f9ac527f26a3c345, type: 3}
-    StartedHPBonuse: 100
+    StartedHPBonus: 100

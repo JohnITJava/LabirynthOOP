@@ -1,21 +1,26 @@
 ﻿using System.IO;
 using UnityEngine;
-using static BallLabirynthOOP.LabirynthConstants;
+using static BallLabirynthOOP.DataPaths;
 
 
 namespace BallLabirynthOOP
 {
     [CreateAssetMenu(fileName = "Data", menuName = "Data/Data")]
-    public sealed class Data : ScriptableObject
+    internal sealed class Data : ScriptableObject
     {
 
         [SerializeField] private string _playerDataPath = PlayerBallDataPath;
         [SerializeField] private string _bonusCubeDataPath = BonusCubeDataPath;
         [SerializeField] private string _cameraDataPath = CameraDataPath;
+        [SerializeField] private string _enemyDataPath = EnemyDataPath;
+        [SerializeField] private string _guiDisplayDataPath = GUIDisplayDataPath;
+
 
         private PlayerBallData _playerBallData;
         private BonusCubeData _bonusCubeData;
         private CameraData _cameraData;
+        private EnemyData _enemyData;
+        private DisplayInfoData _displayInfoData;
 
 
         public PlayerBallData PlayerData
@@ -57,6 +62,31 @@ namespace BallLabirynthOOP
             }
         }
 
+        public EnemyData EnemyData
+        {
+            get
+            {
+                if (_enemyData == null)
+                {
+                    _enemyData = Load<EnemyData>(DataPath + _enemyDataPath);
+                }
+
+                return _enemyData;
+            }
+        }
+
+        public DisplayInfoData DisplayInfoData
+        {
+            get
+            {
+                if (_displayInfoData == null)
+                {
+                    _displayInfoData = Load<DisplayInfoData>(DataPath + _guiDisplayDataPath);
+                }
+
+                return _displayInfoData;
+            }
+        }
 
         private T Load<T>(string resoursePath) where T : Object =>
             Resources.Load<T>(Path.ChangeExtension(resoursePath, null));

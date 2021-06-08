@@ -4,7 +4,7 @@
 namespace BallLabirynthOOP
 {
     [CreateAssetMenu(fileName = "CameraData", menuName = "Data/Camera Data", order = 3)]
-    public sealed class CameraData : ScriptableObject
+    internal sealed class CameraData : ScriptableObject
     {
         public Camera MainCamera;
 

@@ -6,6 +6,6 @@ namespace BallLabirynthOOP
 {
     public interface IPlayerFactory
     {
-        Transform CreatePlayer();
+        object CreatePlayer();
     }
 }

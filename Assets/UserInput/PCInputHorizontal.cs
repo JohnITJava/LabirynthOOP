@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BallLabirynthOOP
 {
-    public sealed class PCInputHorizontal : IUserInputProxy
+    internal sealed class PCInputHorizontal : IUserInputProxy
     {
         public event Action<float> AxisOnChange = delegate (float f) { };
 

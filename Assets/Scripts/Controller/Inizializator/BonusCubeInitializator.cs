@@ -11,8 +11,6 @@ namespace BallLabirynthOOP
             BonusCubeController bonusCubeController = new BonusCubeController(bonusData, cameraData);
 
             controllersExecutor.Add(bonusCubeController);
-            controllersExecutor.Add(bonusCubeController);
-            controllersExecutor.Add(bonusCubeController);
         }
 
         public void Initialization() {}

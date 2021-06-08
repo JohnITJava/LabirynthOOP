@@ -4,7 +4,7 @@ using System;
 
 namespace BallLabirynthOOP
 {
-    public struct EnemyInfo
+    internal struct EnemyInfo
     {
         private Type _type;
         private string _name;

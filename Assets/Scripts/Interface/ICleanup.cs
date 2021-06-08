@@ -1,6 +1,4 @@
-﻿
-
-namespace BallLabirynthOOP
+﻿namespace BallLabirynthOOP
 {
     public interface ICleanup
     {

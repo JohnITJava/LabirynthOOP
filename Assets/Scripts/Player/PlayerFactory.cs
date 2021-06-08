@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace BallLabirynthOOP
 {
-    public sealed class PlayerFactory : IPlayerFactory
+    internal sealed class PlayerFactory : IPlayerFactory
     {
         private readonly PlayerBallData _playerData;
 
-        public PlayerFactory(PlayerBallData playerData)
+        internal PlayerFactory(PlayerBallData playerData)
         {
             _playerData = playerData;
         }
@@ -18,7 +18,9 @@ namespace BallLabirynthOOP
             var spawnedBall = UnityEngine.Object.Instantiate(
                _playerData.PlayerBall.Ball,
                _playerData.PlayerBall.StartPosition,
-               Quaternion.identity);
+               Quaternion.identity)
+                .SetName("Player");
+
 
             var playerBall = new PlayerBall(
                 spawnedBall,

@@ -11,9 +11,6 @@ namespace BallLabirynthOOP
             controllersExecutor.Add(new MoveController(input, untiData, unit));
         }
 
-        public void Initialization()
-        {
-            throw new NotImplementedException();
-        }
+        public void Initialization() {}
     }
 }

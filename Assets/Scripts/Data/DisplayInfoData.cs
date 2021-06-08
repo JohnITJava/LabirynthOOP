@@ -3,11 +3,12 @@
 
 namespace BallLabirynthOOP
 {
-    [CreateAssetMenu(fileName = "DisplayInfo", menuName = "Data/Display Info")]
-    public sealed class DisplayInfoData : ScriptableObject
+    [CreateAssetMenu(fileName = "GUIDisplayData", menuName = "Data/GUI Display")]
+    internal sealed class DisplayInfoData : ScriptableObject
     {
-        public DisplayBonus DisplayBonus;
-        public DisplayEndGame DisplayEndGame;
+        public GameObject Canvas;
+        public GameObject InfoPanel;
+        public GameObject ButtonPanel;
     }
 
 }

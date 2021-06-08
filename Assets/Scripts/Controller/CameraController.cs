@@ -18,7 +18,7 @@
 
         private void SignToBonusChangeEvent()
         {
-            _cameraModel.CameraView.PlayerBall.OnBonusPointsChangeEvent += OnBonusChangeReaction;
+            _cameraModel.CameraView.Player.OnBonusPointsChangeEvent += OnBonusChangeReaction;
         }
 
 

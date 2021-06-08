@@ -5,15 +5,15 @@ using static BallLabirynthOOP.CubeTypeBehaviourWrapper;
 using Random = UnityEngine.Random;
 
 
-
 namespace BallLabirynthOOP
 {
 
     [Serializable]
-    public sealed class BonusCube : InteractiveObject, IEquatable<BonusCube>
+    internal sealed class BonusCube : InteractiveObject, IEquatable<BonusCube>, IEnemy
     {
-
         public GameObject BonusCubeObject;
+
+        public event Action<IEnemy> EnemyOnDestroyChange = delegate { };
 
         public float FlyMin = 1.0f;
         public float FlyMax = 5.0f;
@@ -39,7 +39,7 @@ namespace BallLabirynthOOP
 
         public BonusCube() { }
 
-        public BonusCube(GameObject cube)
+        internal BonusCube(GameObject cube)
         {
             BonusCubeObject = cube;
             Initialization(cube);
@@ -107,6 +107,8 @@ namespace BallLabirynthOOP
             if (_isTriggered && _hit.collider.CompareTag("Player"))
             {
                 Debug.Log("Im TRIGGERED");
+
+                this.EnemyOnDestroyChange?.Invoke(this);
                 this.OnTriggerEnter();
             }
         }
@@ -130,6 +132,11 @@ namespace BallLabirynthOOP
         public override void Interaction()
         {
             _cubeTypeBehaviourDelegate[_behaviourType]?.Invoke();
+        }
+
+        public void Move()
+        {
+            Interaction();
         }
 
 

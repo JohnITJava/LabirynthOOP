@@ -1,11 +1,4 @@
-﻿
-/* Unmerged change from project 'Assembly-CSharp.Player'
-Before:
-using UnityEngine;
-After:
-using System;
-*/
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 
@@ -65,9 +58,9 @@ namespace BallLabirynthOOP
 
 
             GUILayout.BeginArea(_areaRect);
-            GUI.Box(new Rect(0, 0, 200, 50), _bonusMessagTMPRO.text, _guiStyle);
-            GUI.backgroundColor = new Color(0, 0, 0, .5f);
-            GUI.color = Color.red;
+            //GUI.Box(new Rect(0, 0, 200, 50), _bonusMessagTMPRO.text, _guiStyle);
+            //GUI.backgroundColor = new Color(0, 0, 0, .5f);
+            //GUI.color = Color.red;
             GUILayout.EndArea();
         }
 

@@ -1,20 +1,13 @@
 ﻿using System;
-
-/* Unmerged change from project 'Assembly-CSharp.Player'
-Before:
-using System;
-After:
-using System.Collections;
-using UnityEngine;
-*/
 using UnityEngine;
 using Rand = UnityEngine.Random;
+
 
 namespace BallLabirynthOOP
 {
 
     [Serializable]
-    public sealed class CameraView
+    internal sealed class CameraView
     {
         private CameraData _cameraData;
         private Camera _camera;
@@ -26,14 +19,14 @@ namespace BallLabirynthOOP
         private bool _isShakeTriggered;
 
 
-        public CameraView(Camera camera, CameraData cameraData)
+        internal CameraView(Camera camera, CameraData cameraData)
         {
             _camera = camera;
             _player = cameraData.PlayerBallReference;
             _cameraData = cameraData;
         }
 
-        public PlayerBall PlayerBall => _player;
+        public PlayerBall Player => _player;
 
         public bool IsShakeTriggered => _isShakeTriggered;
 

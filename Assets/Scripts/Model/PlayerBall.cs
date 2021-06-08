@@ -6,7 +6,7 @@ namespace BallLabirynthOOP
 {
 
     [Serializable]
-    public sealed class PlayerBall : PlayerBase
+    internal sealed class PlayerBall : PlayerBase
     {
         public GameObject Ball;
 
@@ -22,7 +22,7 @@ namespace BallLabirynthOOP
         private float _bonusPoints;
 
 
-        public PlayerBall(GameObject ball, float speed, Vector3 startPosition) : base(ball.GetComponent<Rigidbody>())
+        internal PlayerBall(GameObject ball, float speed, Vector3 startPosition) : base(ball.GetComponent<Rigidbody>())
         {
             Ball = ball;
             Speed = speed;
@@ -65,6 +65,7 @@ namespace BallLabirynthOOP
             _onBonusChangeSigners?.Invoke(this, new EventTypeCast<InteractiveObject>(cube));
 
             BonusCube bonusCube = (BonusCube)cube;
+
             _onDamageCaughtSigners.Invoke(new EnemyInfo(
                 bonusCube.GetType(),
                 bonusCube.BonusCubeObject.GetInstanceID().ToString(),
